@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Assay: the check every Binance agent order must pass";
+export const alt = "Assay: let your AI agent trade without handing it the keys";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -36,13 +36,24 @@ export default function OpengraphImage() {
             marginTop: 24,
             display: "flex",
             color: "#EAECEF",
-            fontSize: 76,
+            fontSize: 72,
             fontWeight: 700,
             lineHeight: 1.1,
             maxWidth: 1000,
           }}
         >
-          Assay: every agent order must pass.
+          Let your AI agent trade without handing it the keys.
+        </div>
+        <div
+          style={{
+            marginTop: 28,
+            display: "flex",
+            color: "#929AA5",
+            fontSize: 30,
+            fontFamily: "monospace",
+          }}
+        >
+          assay · pre-trade checks for Binance Agent OS
         </div>
         <div style={{ marginTop: 28, display: "flex", gap: 12 }}>
           {["PASSED", "RESIZED", "BLOCKED", "HALTED"].map((w, i) => (

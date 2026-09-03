@@ -1,6 +1,6 @@
 # Assay
 
-**The check every Binance agent order must pass.**
+**Let your AI agent trade without handing it the keys.**
 
 Assay sits between an AI agent and the Binance MCP Server. Every order the agent proposes is priced against the real book and judged against your three rules before Binance ever sees it: oversized orders are resized to your cap, forbidden symbols are blocked, a red day halts everything, and every verdict cites the rule that fired in plain words, with the transcript hash attached.
 

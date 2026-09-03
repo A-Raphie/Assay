@@ -37,14 +37,15 @@ export default function FrontDoor() {
       {/* Hero: claim + real product proof side by side */}
       <section className="grid items-center gap-10 pb-16 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
-          <p className="font-mono text-xs tracking-[0.3em] text-accent">THE CHECK BEFORE THE ORDER</p>
+          <p className="font-mono text-xs tracking-[0.3em] text-accent">AGENT ORDERS, JUDGED BEFORE BINANCE SEES THEM</p>
           <h1 className="mt-4 max-w-[680px] text-balance bg-gradient-to-r from-white to-[#9b9b9b] bg-clip-text text-5xl font-bold leading-[1.05] tracking-tight text-transparent sm:text-6xl">
-            This is Assay, the check every Binance agent order must pass.
+            Let your AI agent trade without handing it the keys.
           </h1>
           <p className="mt-6 max-w-[680px] text-pretty text-lg leading-relaxed text-ink-2">
-            Binance Agent OS lets AI agents trade your sub-account through MCP. Assay sits in
-            between: oversized orders get cut to your cap, forbidden ones get stopped, and every
-            verdict cites the rule that fired. In plain words, with proof attached.
+            Assay checks every order your agent proposes through the Binance MCP Server against
+            three rules you own: a per-trade cap, a daily loss halt, an allowlist. Oversized orders
+            get cut, forbidden ones get stopped, and every verdict cites the rule that fired with
+            proof attached.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
