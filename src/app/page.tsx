@@ -19,15 +19,24 @@ export default function FrontDoor() {
 
   return (
     <main id="main" className="mx-auto w-full max-w-6xl px-6 pb-0">
-      {/* Mono status strip: live · source */}
-      <div className="flex items-center gap-4 border-b border-line py-3 font-mono text-[11px] tracking-widest text-ink-3">
-        <span className="flex items-center gap-2">
-          <span className="dot-live" /> live
-        </span>
-        <span>·</span>
-        <span>binance mcp server</span>
-        <span>·</span>
-        <span>spot · replay transcript</span>
+      {/* Mono status strip: mirror grammar (logos terminal) — ping dot, phrase, thin dividers */}
+      <div className="border-b border-line bg-panel/40">
+        <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
+          <span className="inline-flex items-center gap-2">
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inset-0 animate-ping rounded-full bg-pass/70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-pass" />
+            </span>
+            Live feed
+          </span>
+          <span className="h-3 w-px bg-line" aria-hidden />
+          <span>Binance MCP Server</span>
+          <span className="hidden h-3 w-px bg-line sm:block" aria-hidden />
+          <span className="hidden sm:inline">Spot · replay transcript</span>
+          <span className="ml-auto hidden font-mono text-[10px] tracking-[0.22em] text-ink-3 sm:inline">
+            tryassay.vercel.app
+          </span>
+        </div>
       </div>
 
       {/* Hero: outcome headline + live instrument + proof card */}
@@ -58,6 +67,7 @@ export default function FrontDoor() {
         {/* Live instrument: hero number + sparkline + real proof card */}
         <Reveal delay={100}>
           <div className="grid gap-4">
+            <h2 className="sr-only">Live market instrument and a verdict judged fresh</h2>
             <div className="rounded-card border border-line bg-panel p-6 card-depth">
               <div className="flex items-start justify-between gap-4">
                 <LiveTicker symbol="BTCUSDT" />
@@ -149,18 +159,18 @@ export default function FrontDoor() {
       {/* The rules, as spec */}
       <section className="border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">THE THREE RULES, AS SHIPPED</h2>
-        <dl className="mt-6 grid gap-3">
+        <div className="mt-6 grid gap-3">
           {RULES.map((r, i) => (
             <Reveal key={r.id} delay={i * 80}>
               <div className="grid gap-1 rounded-card border border-line bg-panel px-5 py-4 card-depth sm:grid-cols-[110px_1fr] sm:gap-6">
-                <dt className="font-mono text-sm font-semibold text-accent">{r.id}</dt>
-                <dd className="text-sm leading-relaxed text-ink-2">
+                <p className="font-mono text-sm font-semibold text-accent">{r.id}</p>
+                <p className="text-sm leading-relaxed text-ink-2">
                   <span className="font-semibold text-ink">{r.name}.</span> {r.line}
-                </dd>
+                </p>
               </div>
             </Reveal>
           ))}
-        </dl>
+        </div>
         <p className="mt-4 text-sm text-ink-3">Defaults, not doctrine: every number is yours to change on the rules page.</p>
       </section>
 
@@ -178,7 +188,7 @@ export default function FrontDoor() {
       {/* FAQ */}
       <section className="border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">STRAIGHT ANSWERS</h2>
-        <dl className="mt-6 grid gap-5">
+        <div className="mt-6 grid gap-5">
           {[
             ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
             ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
@@ -186,11 +196,11 @@ export default function FrontDoor() {
             ["What do I need to run it?", "A Binance account with an Agentic sub-account and any MCP-speaking agent. The rules live in your browser; nothing to deploy, nothing to install server-side."],
           ].map(([q, a]) => (
             <div key={q} className="grid gap-1.5">
-              <dt className="text-sm font-semibold text-ink">{q}</dt>
-              <dd className="text-sm leading-relaxed text-ink-2">{a}</dd>
+              <h3 className="text-sm font-semibold text-ink">{q}</h3>
+              <p className="text-sm leading-relaxed text-ink-2">{a}</p>
             </div>
           ))}
-        </dl>
+        </div>
       </section>
 
       {/* Footer */}

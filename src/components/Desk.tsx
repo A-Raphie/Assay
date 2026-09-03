@@ -245,7 +245,7 @@ export function Desk() {
       </aside>
 
       {/* right: the docket */}
-      <section aria-label="Activity feed" className="grid content-start gap-4">
+      <section aria-label="Activity feed" aria-live="polite" className="grid content-start gap-4">
         <div className="flex items-baseline justify-between">
           <h2 className="font-mono text-sm tracking-widest text-ink-2">THE DOCKET</h2>
           <span className="flex items-baseline gap-4">

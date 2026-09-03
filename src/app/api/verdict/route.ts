@@ -17,7 +17,11 @@ import { join } from "node:path";
 export async function GET(req: NextRequest) {
   const sp = req.nextUrl.searchParams;
   const symbol = (sp.get("symbol") ?? "BTCUSDT").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 20);
-  const notional = Math.min(1_000_000, Math.max(0, Number(sp.get("notional") ?? 50) || 50));
+  const parsedNotional = Number(sp.get("notional") ?? 50);
+  if (!Number.isFinite(parsedNotional) || parsedNotional <= 0) {
+    return NextResponse.json({ error: "notional must be a positive number" }, { status: 400 });
+  }
+  const notional = Math.min(1_000_000, parsedNotional);
   const maxTradePct = Math.min(100, Math.max(0.1, Number(sp.get("maxTradePct") ?? 2) || 2));
   const paperEquity = 1000;
 

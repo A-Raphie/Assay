@@ -73,7 +73,7 @@ export function TryBox() {
       )}
 
       {result && !error && (
-        <div className="mt-5 grid gap-2 rounded-[10px] border border-line bg-vessel p-4">
+        <div role="status" aria-live="polite" className="mt-5 grid gap-2 rounded-[10px] border border-line bg-vessel p-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="font-mono text-sm font-semibold">
               {result.requested.symbol} · {result.requested.notional} USDC

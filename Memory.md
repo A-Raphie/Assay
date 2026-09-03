@@ -28,3 +28,6 @@ Running log of decisions, conventions, and gotchas. Newest at the top. One line 
 - Hackathon-design banned default: dark dashboard, purple gradient, bento, chat panel, "Powered by" footer.
 - Docket cards must show transcript hashes; REPLAY mode must be visibly labeled REPLAY.
 - Survey: https://app.binance.com/uni-qr/user-survey/2913aa200aac462c89a737779393f3d4 — submit even if late-stage.
+
+## Gotchas
+- **Audits bind to a revision, not a state.** Every deploy invalidates the last ui-ux-audit/website-audit. Re-run both against the live URL after any deploy; a verdict on old screenshots is fiction (his catch, Sep 4: the weak status strip shipped AFTER both audits and never got scrutinized). Use pre-ship-gate binding: audit hash == deployed hash.
