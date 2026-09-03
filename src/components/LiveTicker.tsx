@@ -49,21 +49,25 @@ export function LiveTicker({ symbol = "BTCUSDT" }: { symbol?: string }) {
       <span className="flex items-center gap-2 font-mono text-xs tracking-widest text-ink-3">
         <span className="dot-live" /> {symbol} · live · binance mcp
       </span>
-      <div className="flex flex-wrap items-baseline gap-3">
+      {/* Fixed-height rows (winsznx: delta chip sits below the number). Data
+          arriving must never shift layout: both rows are height-reserved. */}
+      <div className="grid gap-2">
         <span
-          className={`number-xl tabular-nums ${flash ? (flash === "up" ? "tick-up" : "tick-down") : ""}`}
+          className={`number-xl flex h-[54px] items-center whitespace-nowrap tabular-nums md:h-[68px] ${flash ? (flash === "up" ? "tick-up" : "tick-down") : ""}`}
         >
           {tick ? Number(tick.lastPrice).toLocaleString("en-US", { maximumFractionDigits: 2 }) : "…"}
         </span>
-        {tick && (
-          <span
-            className={`rounded-full px-2.5 py-1 font-mono text-xs font-semibold ${
-              up ? "bg-pass/15 text-pass" : "bg-deny/15 text-deny-text"
-            }`}
-          >
-            {up ? "▲" : "▼"} {Math.abs(Number(tick.changePct)).toFixed(2)}% 24h
-          </span>
-        )}
+        <span className="flex min-h-[28px] items-center">
+          {tick && (
+            <span
+              className={`inline-block rounded-full px-2.5 py-1 font-mono text-xs font-semibold ${
+                up ? "bg-pass/15 text-pass" : "bg-deny/15 text-deny-text"
+              }`}
+            >
+              {up ? "▲" : "▼"} {Math.abs(Number(tick.changePct)).toFixed(2)}% 24h
+            </span>
+          )}
+        </span>
       </div>
     </div>
   );
