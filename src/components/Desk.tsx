@@ -13,11 +13,21 @@ interface FeedItem {
   order: Order;
   price?: DeskResult["price"];
   transcriptHash?: string;
+  entryHash?: string;
+  scenario?: string;
   mode: "LIVE" | "REPLAY";
   at: string;
 }
 
 const FEED_KEY = "assay.feed.v1";
+
+async function entryHashOf(transcriptHash: string | undefined, order: Order, at: string): Promise<string> {
+  // The docket entry's own hash: transcript response + the exact order judged.
+  // Distinct checks produce distinct hashes; identical ones prove identical inputs.
+  const material = `${transcriptHash ?? ""}|${JSON.stringify(order)}|${at}`;
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(material));
+  return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
 
 function loadFeed(): FeedItem[] {
   if (typeof window === "undefined") return [];
@@ -36,7 +46,7 @@ function saveFeed(feed: FeedItem[]) {
 
 export function Desk() {
   const [rules, setRules] = useRules();
-  const [mode, setMode] = useState<"LIVE" | "REPLAY">("REPLAY");
+  const [mode, setMode] = useState<"REPLAY" | "CONFIRM_LIVE" | "LIVE">("REPLAY");
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [busy, setBusy] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
@@ -54,12 +64,14 @@ export function Desk() {
     };
   }, []);
 
-  const push = useCallback((r: DeskResult, m: "LIVE" | "REPLAY") => {
+  const push = useCallback(async (r: DeskResult, m: "LIVE" | "REPLAY", scenario?: string) => {
     if (!r.ok || !r.verdict || !r.order) {
       setError(r.error ?? "Unknown error");
       return;
     }
     setError(null);
+    const at = new Date().toISOString().slice(11, 19) + " UTC";
+    const hash = await entryHashOf(r.transcriptHash, r.order, at);
     setFeed((prev) => {
       const next: FeedItem[] = [
         {
@@ -68,8 +80,10 @@ export function Desk() {
           order: r.order!,
           price: r.price,
           transcriptHash: r.transcriptHash,
+          entryHash: hash,
+          scenario,
           mode: m,
-          at: new Date().toISOString().slice(11, 19) + " UTC",
+          at,
         },
         ...prev,
       ];
@@ -81,15 +95,16 @@ export function Desk() {
   const runLive = async () => {
     setBusy(true);
     setBusyId("live");
-    push(await proposeLive({ symbol, side: "BUY", notional: Number(notional), rules }), "LIVE");
+    push(await proposeLive({ symbol, side: "BUY", notional: Number(notional), rules }), "LIVE", `${symbol} · manual`);
     setBusy(false);
     setBusyId(null);
   };
 
   const runReplay = async (id: string) => {
+    const scenario = replayScenarios.find((s) => s.id === id);
     setBusy(true);
     setBusyId(id);
-    push(await replayScenario(id, rules), "REPLAY");
+    push(await replayScenario(id, rules), "REPLAY", scenario?.label);
     setBusy(false);
     setBusyId(null);
   };
@@ -101,23 +116,52 @@ export function Desk() {
         <section className="rounded-card border border-line bg-panel p-5">
           <h2 className="text-sm text-ink-2">Mode</h2>
           <div className="mt-3 grid grid-cols-2 gap-2">
-            {(["REPLAY", "LIVE"] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                aria-pressed={mode === m}
-                className={`rounded-card border px-3 py-2 font-mono text-sm tracking-widest transition-all duration-150 active:scale-[0.98] ${
-                  mode === m ? "border-accent bg-accent text-on-accent" : "border-line text-ink-2 hover:border-accent hover:text-accent"
-                }`}
-              >
-                {m}
-              </button>
-            ))}
+            {(["REPLAY", "LIVE"] as const).map((m) => {
+              const current = mode === m || (m === "LIVE" && mode === "CONFIRM_LIVE");
+              return (
+                <button
+                  key={m}
+                  onClick={() => setMode(m === "LIVE" && mode !== "LIVE" ? "CONFIRM_LIVE" : "REPLAY")}
+                  aria-pressed={current}
+                  className={`rounded-card border px-3 py-2 font-mono text-sm tracking-widest transition-all duration-150 active:scale-[0.98] ${
+                    current
+                      ? m === "LIVE"
+                        ? "border-deny bg-deny text-white"
+                        : "border-accent bg-accent text-on-accent"
+                      : "border-line text-ink-2 hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {m}
+                </button>
+              );
+            })}
           </div>
+          {mode === "CONFIRM_LIVE" && (
+            <div className="mt-3 rounded-card border border-deny/60 bg-vessel p-3">
+              <p className="text-xs leading-relaxed text-ink">
+                LIVE reads your real Agentic sub-account through the Binance MCP Server. Verdicts
+                still stop before execution.
+              </p>
+              <div className="mt-2 flex gap-2">
+                <button
+                  onClick={() => setMode("LIVE")}
+                  className="rounded-stamp border border-deny px-3 py-1 font-mono text-xs font-semibold text-deny transition-transform duration-150 active:scale-[0.98]"
+                >
+                  Arm LIVE
+                </button>
+                <button
+                  onClick={() => setMode("REPLAY")}
+                  className="rounded-stamp border border-line px-3 py-1 font-mono text-xs text-ink-2 transition-transform duration-150 hover:border-accent hover:text-accent active:scale-[0.98]"
+                >
+                  Stay on REPLAY
+                </button>
+              </div>
+            </div>
+          )}
           <p className="mt-3 text-xs leading-relaxed text-ink-3">
-            {mode === "LIVE"
-              ? "Real sub-account through the Binance MCP Server. Verdicts stop before execution."
-              : "Same engine, hash-verified recorded market data. Paper equity: 1,000 USDC (declared)."}
+            {mode === "REPLAY"
+              ? "Same engine, hash-verified recorded market data. Paper equity: 1,000 USDC (declared)."
+              : "Real sub-account through the Binance MCP Server. Verdicts stop before execution."}
           </p>
         </section>
 
@@ -241,12 +285,13 @@ export function Desk() {
         {feed.map((f) => (
           <DocketCard
             key={f.serial}
-            serial={`${f.serial} · ${f.at}`}
+            serial={`${f.serial} · ${f.at}${f.scenario ? ` · ${f.scenario}` : ""}`}
             verdict={f.verdict}
             symbol={f.order.symbol}
             notional={f.order.notional}
             price={f.price}
             transcriptHash={f.transcriptHash}
+            entryHash={f.entryHash}
             mode={f.mode}
             animate
           />

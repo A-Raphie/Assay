@@ -29,7 +29,10 @@ Plain, verb-first, zero jargon on the front door. Verdicts cite the rule in the 
 3. **Desk (activity feed)** — propose order (LIVE form or REPLAY run), feed of Docket cards in 4 states, each with serial, rule citation, transcript hash, and for fills: entry, fee, what-to-watch.
 
 ## Folds used
-- (empty on scaffold)
+- Front door: split hero (claim left, REAL docket proof card right, server-rendered from committed transcript), then full-width tagline-reveal moment, then 3-card how-it-works, rules spec table, works-with chip strip, footer. Sacrificed the centered single-column doc fold.
+- Desk: left rail (mode, rules summary, propose/scenarios) + docket feed right; lg:grid-cols-[320px_1fr]. Sacrificed top command bar.
+- Rules: two-column editor + live stamp plate with save echo. Sacrificed single-column stacked.
+- Docket card: header row carries serial + inline stamp on mobile, rotated strike overlay at sm+; tabular nowrap amounts; footer holds mode + hash only.
 
 ## Avoid-list
 - Dark dashboard with purple/blue gradient; bento stat grids; glassmorphic cards.

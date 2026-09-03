@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Desk } from "@/components/Desk";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = { title: "Desk · Assay" };
 
@@ -11,10 +12,12 @@ export default function DeskPage() {
           assay
         </Link>
         <div className="flex items-baseline gap-6">
-          <Link href="/rules" className="font-mono text-sm text-accent hover:underline">
+          <Link href="/rules" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
             rules
           </Link>
-          <span className="font-mono text-sm text-ink-3">desk</span>
+          <span className="font-mono text-sm text-accent" aria-current="page">
+            desk
+          </span>
         </div>
       </nav>
 
@@ -27,6 +30,7 @@ export default function DeskPage() {
       <div className="mt-8">
         <Desk />
       </div>
+      <SiteFooter />
     </main>
   );
 }

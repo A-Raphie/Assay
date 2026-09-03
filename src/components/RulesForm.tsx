@@ -59,6 +59,12 @@ export function useRules(): readonly [RuleSet, (r: RuleSet) => void, number | nu
 const inputCls =
   "w-28 rounded-card border border-line bg-vessel px-3 py-2 font-mono text-lg text-ink outline-none transition-colors duration-150 focus:border-accent focus-visible:ring-2 focus-visible:ring-accent/40";
 
+function clampPct(v: string, fallback: number): number {
+  const n = Number(v);
+  if (Number.isNaN(n)) return fallback;
+  return Math.min(100, Math.max(0.1, Math.round(n * 10) / 10));
+}
+
 export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r: RuleSet) => void }) {
   const [chip, setChip] = useState("");
   const commitChip = () => {
@@ -69,7 +75,9 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
   return (
     <div className="grid gap-6">
       <label className="grid gap-2">
-        <span className="text-sm text-ink-2">Rule 1 · max percent of equity per trade</span>
+        <span className="text-sm text-ink-2">
+          Rule 1 · max percent of equity per trade <span className="text-ink-3">(0.1 to 100)</span>
+        </span>
         <span className="flex items-center gap-3">
           <input
             type="number"
@@ -77,7 +85,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
             max={100}
             step={0.1}
             value={rules.maxTradePct}
-            onChange={(e) => onChange({ ...rules, maxTradePct: Number(e.target.value) })}
+            onChange={(e) => onChange({ ...rules, maxTradePct: clampPct(e.target.value, rules.maxTradePct) })}
             className={inputCls}
           />
           <span className="font-mono text-sm text-ink-3">%</span>
@@ -85,7 +93,9 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
       </label>
 
       <label className="grid gap-2">
-        <span className="text-sm text-ink-2">Rule 2 · halt all trading at daily loss</span>
+        <span className="text-sm text-ink-2">
+          Rule 2 · halt all trading at daily loss <span className="text-ink-3">(0.1 to 100)</span>
+        </span>
         <span className="flex items-center gap-3">
           <input
             type="number"
@@ -93,7 +103,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
             max={100}
             step={0.1}
             value={rules.dailyHaltPct}
-            onChange={(e) => onChange({ ...rules, dailyHaltPct: Number(e.target.value) })}
+            onChange={(e) => onChange({ ...rules, dailyHaltPct: clampPct(e.target.value, rules.dailyHaltPct) })}
             className={inputCls}
           />
           <span className="font-mono text-sm text-ink-3">%</span>
@@ -125,6 +135,14 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
           />
         </span>
       </div>
+
+      <button
+        type="button"
+        onClick={() => onChange(DEFAULT_RULES)}
+        className="w-fit font-mono text-xs text-ink-3 underline decoration-line underline-offset-4 transition-colors duration-150 hover:text-accent"
+      >
+        reset to defaults
+      </button>
     </div>
   );
 }

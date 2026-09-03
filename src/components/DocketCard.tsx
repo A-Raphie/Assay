@@ -14,6 +14,7 @@ export function DocketCard({
   notional,
   price,
   transcriptHash,
+  entryHash,
   mode,
   animate,
 }: {
@@ -23,12 +24,18 @@ export function DocketCard({
   notional: number;
   price?: { symbol: string; lastPrice: string; changePct: string };
   transcriptHash?: string;
+  entryHash?: string;
   mode: "LIVE" | "REPLAY";
   animate?: boolean;
 }) {
   const style = STATE_STYLE[verdict.action];
   const showStamp = verdict.action !== "PASS";
   const finalNotional = verdict.adjustedNotional ?? notional;
+  const trustLine = entryHash
+    ? `entry sha256 ${entryHash.slice(0, 12)}…`
+    : transcriptHash
+      ? `transcript sha256 ${transcriptHash.slice(0, 12)}…`
+      : "";
   return (
     <article
       data-testid="docket-card"
@@ -47,8 +54,11 @@ export function DocketCard({
             {verdict.action}
           </span>
         ) : (
-          <span className={`rounded-stamp border px-2 py-0.5 font-mono text-[11px] tracking-widest ${style.chip}`}>
-            {style.word}
+          <span
+            aria-hidden
+            className={`rounded-stamp border-2 px-2.5 py-0.5 font-mono text-sm font-bold tracking-[0.15em] rotate-[-3deg] ${style.chip} ${animate ? "stamp-animate" : ""}`}
+          >
+            PASS
           </span>
         )}
       </header>
@@ -75,10 +85,8 @@ export function DocketCard({
       </p>
 
       <footer className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-3">
-        <span className="font-mono text-[11px] text-ink-3">
-          {mode}
-          {transcriptHash ? ` · sha256 ${transcriptHash.slice(0, 12)}…` : ""}
-        </span>
+        <span className="font-mono text-[11px] text-ink-3">{mode}</span>
+        <span className="font-mono text-[11px] text-ink-3">{trustLine}</span>
       </footer>
     </article>
   );

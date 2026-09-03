@@ -1,19 +1,20 @@
 "use client";
 
 import { RulesEditor, StampPlate, useRules } from "@/components/RulesForm";
+import { SiteFooter } from "@/components/SiteFooter";
 import Link from "next/link";
 
 export default function RulesPage() {
   const [rules, update, savedAt] = useRules();
   return (
-    <main className="mx-auto w-full max-w-3xl px-6 pb-24">
+    <main className="mx-auto flex min-h-[80vh] w-full max-w-3xl flex-col px-6 pb-10">
       <nav className="flex items-baseline justify-between pt-10">
         <Link href="/" className="font-mono text-sm text-ink-2 hover:text-accent">
           assay
         </Link>
-        <Link href="/desk" className="font-mono text-sm text-accent hover:underline">
-          desk →
-        </Link>
+        <span className="font-mono text-sm text-accent" aria-current="page">
+          rules
+        </span>
       </nav>
 
       <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
@@ -40,6 +41,10 @@ export default function RulesPage() {
         Spot orders only in this build. Margin and futures semantics (leverage, liquidation) are out
         of scope by design: a cap that lies is worse than no cap.
       </p>
+
+      <div className="mt-auto pt-12">
+        <SiteFooter />
+      </div>
     </main>
   );
 }
