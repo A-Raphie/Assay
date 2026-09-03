@@ -51,7 +51,7 @@ export function Reveal({
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-        shown ? "translate-y-0 opacity-100 blur-0" : "translate-y-6 opacity-0 blur-md"
+        shown ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
       } ${className}`}
     >
       {children}

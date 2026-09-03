@@ -50,6 +50,7 @@ export function Desk() {
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [busy, setBusy] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [clearArmed, setClearArmed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [live, setLive] = useState<DeskResult | null>(null);
   const [symbol, setSymbol] = useState("BTCUSDC");
@@ -117,23 +118,24 @@ export function Desk() {
   return (
     <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
       {/* left rail: mode + rules summary + propose */}
-      <aside className="grid content-start gap-6">
+      <aside className="order-2 grid content-start gap-6 lg:order-1">
         <section className="rounded-card border border-line bg-panel p-5">
           <h2 className="text-sm text-ink-2">Mode</h2>
           <div className="mt-3 grid grid-cols-2 gap-2">
             {(["REPLAY", "LIVE"] as const).map((m) => {
-              const current = mode === m || (m === "LIVE" && mode === "CONFIRM_LIVE");
+              const current = mode === m;
+              const confirming = mode === "CONFIRM_LIVE" && m === "LIVE";
               return (
                 <button
                   key={m}
                   onClick={() => setMode(m === "LIVE" && mode !== "LIVE" ? "CONFIRM_LIVE" : "REPLAY")}
                   aria-pressed={current}
                   className={`rounded-card border px-3 py-2 font-mono text-sm tracking-widest transition-all duration-150 active:scale-[0.98] ${
-                    current
-                      ? m === "LIVE"
-                        ? "border-deny bg-deny text-white"
-                        : "border-accent bg-accent text-on-accent"
-                      : "border-line text-ink-2 hover:border-accent hover:text-accent"
+                    confirming
+                      ? "border-deny text-deny-text"
+                      : current
+                        ? "border-accent bg-accent text-on-accent"
+                        : "border-line text-ink-2 hover:border-accent hover:text-accent"
                   }`}
                 >
                   {m}
@@ -166,7 +168,7 @@ export function Desk() {
           <p className="mt-3 text-xs leading-relaxed text-ink-3">
             {mode === "REPLAY"
               ? "Same engine, hash-verified recorded market data. Paper equity: 1,000 USDC (declared)."
-              : "Real sub-account through the Binance MCP Server. Verdicts stop before execution."}
+              : "Real sub-account through the Binance MCP Server. Execution stays gated."}
           </p>
         </section>
 
@@ -245,21 +247,31 @@ export function Desk() {
       </aside>
 
       {/* right: the docket */}
-      <section aria-label="Activity feed" aria-live="polite" className="grid content-start gap-4">
+      <section aria-label="Activity feed" aria-live="polite" className="order-1 grid content-start gap-4 lg:order-2">
         <div className="flex items-baseline justify-between">
           <h2 className="font-mono text-sm tracking-widest text-ink-2">THE DOCKET</h2>
           <span className="flex items-baseline gap-4">
             <span className="font-mono text-xs text-ink-3">
               {feed.length} {feed.length === 1 ? "entry" : "entries"}
             </span>
-            {feed.length > 0 && (
+            {feed.length > 0 && (clearArmed ? (
+              <span className="flex items-baseline gap-2 font-mono text-xs">
+                <button
+                  onClick={() => { clearFeed(); setClearArmed(false); }}
+                  className="text-deny-text underline decoration-deny underline-offset-4"
+                >
+                  confirm clear
+                </button>
+                <button onClick={() => setClearArmed(false)} className="text-ink-3 hover:text-ink">cancel</button>
+              </span>
+            ) : (
               <button
-                onClick={clearFeed}
+                onClick={() => setClearArmed(true)}
                 className="font-mono text-xs text-ink-3 underline decoration-line underline-offset-4 transition-colors duration-150 hover:text-deny"
               >
                 clear
               </button>
-            )}
+            ))}
           </span>
         </div>
 
@@ -275,7 +287,7 @@ export function Desk() {
             <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-ink-3">
               {mode === "LIVE"
                 ? "Propose any order on the left: Assay prices it against the real book and judges it before Binance ever sees it."
-                : "See it work in one click: a 1,000 USDC meme order meets the 2% cap and the allowlist."}
+                : "Run the YOLO scenario on the left: a 1,000 USDC meme order meets the 2% cap and the allowlist."}
             </p>
             {mode === "REPLAY" && (
               <button
@@ -286,11 +298,6 @@ export function Desk() {
                 {busyId === "yolo-doge" ? "Judging…" : "Run the YOLO scenario"}
               </button>
             )}
-            <div className="mx-auto mt-6 grid max-w-sm gap-2 opacity-40" aria-hidden>
-              <div className="h-4 w-1/3 rounded-sm bg-vessel" />
-              <div className="h-8 w-full rounded-sm bg-vessel" />
-              <div className="h-3 w-2/3 rounded-sm bg-vessel" />
-            </div>
           </div>
         )}
 

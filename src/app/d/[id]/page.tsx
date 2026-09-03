@@ -67,11 +67,11 @@ export default async function PublicDocket({ params }: { params: Promise<{ id: s
     <main className="mx-auto grid min-h-[85vh] w-full max-w-2xl content-center px-6">
       {!result || !decoded ? (
         <div className="rounded-card border border-line bg-panel p-8 text-center card-depth">
-          <p className="font-mono text-xs tracking-[0.3em] text-deny-text">VERDICT: BLOCKED</p>
+          <p className="font-mono text-xs tracking-[0.3em] text-accent">MALFORMED LINK</p>
           <h1 className="mt-3 text-2xl font-bold">This docket link is malformed.</h1>
           <p className="mt-2 text-sm text-ink-2">The order payload could not be read.</p>
-          <Link href="/" className="mt-6 inline-block font-mono text-sm text-accent hover:underline">
-            back to assay
+          <Link href="/" className="mt-6 inline-block rounded-card bg-accent-bright px-5 py-2.5 font-mono text-sm font-semibold text-on-accent transition-all duration-150 hover:bg-accent active:scale-[0.98]">
+            Back to the front door
           </Link>
         </div>
       ) : (

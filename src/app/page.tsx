@@ -18,10 +18,12 @@ export default function FrontDoor() {
   const proof = heroProof();
 
   return (
-    <main id="main" className="mx-auto w-full max-w-6xl px-6 pb-0">
+    <main id="main" className="mx-auto w-full max-w-6xl overflow-x-clip px-6 pb-0">
       {/* Mono status strip: mirror grammar (logos terminal) — ping dot, phrase, thin dividers */}
       <div className="border-b border-line bg-panel/40">
         <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
+          <Link href="/" className="font-semibold text-ink hover:text-accent">Assay</Link>
+          <span className="h-3 w-px bg-line" aria-hidden />
           <span className="inline-flex items-center gap-2">
             <span className="relative inline-flex h-1.5 w-1.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-pass/70" />
@@ -40,7 +42,7 @@ export default function FrontDoor() {
       </div>
 
       {/* Hero: outcome headline + live instrument + proof card */}
-      <section className="grid items-center gap-10 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="grid items-center gap-8 pb-10 pt-10 md:pt-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <h1 className="max-w-[680px] text-balance bg-gradient-to-r from-white to-[#9b9b9b] bg-clip-text text-5xl font-bold leading-[1.05] tracking-tight text-transparent sm:text-6xl">
             Let your AI agent trade without handing it the keys.
@@ -58,7 +60,7 @@ export default function FrontDoor() {
             >
               Judge an order here
             </Link>
-            <Link href="/rules" className="font-mono text-sm text-accent hover:underline">
+            <Link href="/rules" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
               set your rules first
             </Link>
           </div>
@@ -72,7 +74,7 @@ export default function FrontDoor() {
             <div className="rounded-card border border-line bg-panel p-6 card-depth">
               <div className="flex items-start justify-between gap-4">
                 <LiveTicker symbol="BTCUSDT" />
-                <Sparkline symbol="BTCUSDT" className="w-40 h-12 shrink-0" />
+                <Sparkline symbol="BTCUSDT" className="hidden h-12 w-40 shrink-0 sm:block" />
               </div>
               <p className="mt-3 font-mono text-[11px] text-ink-3">
                 the price your agent would trade at, right now · 24h closes
@@ -189,7 +191,7 @@ export default function FrontDoor() {
       {/* FAQ */}
       <section className="border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">STRAIGHT ANSWERS</h2>
-        <div className="mt-6 grid gap-5">
+        <div className="mt-6 grid max-w-2xl gap-5">
           {[
             ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
             ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],

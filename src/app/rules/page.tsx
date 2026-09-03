@@ -12,9 +12,14 @@ export default function RulesPage() {
         <Link href="/" className="font-mono text-sm text-ink-2 hover:text-accent">
           Assay
         </Link>
-        <span className="font-mono text-sm text-accent" aria-current="page">
-          rules
-        </span>
+        <div className="flex items-baseline gap-6">
+          <Link href="/desk" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
+            desk
+          </Link>
+          <span className="font-mono text-sm text-accent" aria-current="page">
+            rules
+          </span>
+        </div>
       </nav>
 
       <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
@@ -30,7 +35,7 @@ export default function RulesPage() {
         Three rules, judged on every order before it reaches Binance. Saved in this browser only.
       </p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-[1fr_260px]">
+      <div className="mt-8 grid items-start gap-4 sm:grid-cols-[1fr_260px]">
         <div className="rounded-card border border-line bg-panel p-6">
           <RulesEditor rules={rules} onChange={update} />
         </div>
