@@ -44,10 +44,10 @@ export default function FrontDoor() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              href="/desk"
+              href="#try"
               className="rounded-card bg-accent-bright px-6 py-3 font-mono text-sm font-semibold tracking-wide text-on-accent transition-all duration-150 hover:bg-accent hover:shadow-[0_0_20px_var(--glow-accent)] active:scale-[0.98]"
             >
-              Judge an order now
+              Judge an order here
             </Link>
             <Link href="/rules" className="font-mono text-sm text-accent hover:underline">
               set your rules first
@@ -83,7 +83,7 @@ export default function FrontDoor() {
       </section>
 
       {/* Try box: do the one job in five seconds */}
-      <section className="border-t border-line py-16">
+      <section id="try" className="border-t border-line py-16 scroll-mt-6">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">DO THE ONE JOB RIGHT HERE</h2>
         <div className="mt-6">
           <TryBox />
@@ -183,7 +183,7 @@ export default function FrontDoor() {
             ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
             ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
             ["Which agents work with it?", "Any of them. Claude Code, Codex, ChatGPT, VS Code: if it speaks MCP, its orders can be judged. Assay is a check, not a framework."],
-            ["What happens when a rule fires?", "The order is resized, blocked, or halted, and the docket card cites the rule in your own words with the transcript hash attached."],
+            ["What do I need to run it?", "A Binance account with an Agentic sub-account and any MCP-speaking agent. The rules live in your browser; nothing to deploy, nothing to install server-side."],
           ].map(([q, a]) => (
             <div key={q} className="grid gap-1.5">
               <dt className="text-sm font-semibold text-ink">{q}</dt>
@@ -191,17 +191,6 @@ export default function FrontDoor() {
             </div>
           ))}
         </dl>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="border-t border-line py-16 text-center">
-        <p className="text-2xl font-semibold tracking-tight">See it judge an order in twenty seconds.</p>
-        <Link
-          href="/desk"
-          className="mt-6 inline-block rounded-card bg-accent-bright px-6 py-3 font-mono text-sm font-semibold tracking-wide text-on-accent transition-all duration-150 hover:bg-accent hover:shadow-[0_0_20px_var(--glow-accent)] active:scale-[0.98]"
-        >
-          Enter the desk
-        </Link>
       </section>
 
       {/* Footer */}

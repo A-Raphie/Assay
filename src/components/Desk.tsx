@@ -240,9 +240,6 @@ export function Desk() {
                 </button>
               ))}
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-ink-3">
-              Recorded from real MCP responses, sha256 stamped. The engine that judges these is the one that judges LIVE.
-            </p>
           </section>
         )}
       </aside>

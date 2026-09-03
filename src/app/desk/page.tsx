@@ -23,8 +23,7 @@ export default function DeskPage() {
 
       <h1 className="mt-10 text-4xl font-bold tracking-tight">The desk</h1>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-2">
-        Every order, judged before it reaches Binance. REPLAY runs the exact LIVE engine over
-        hash-verified recorded market data.
+        Every order, judged before it reaches Binance.
       </p>
 
       <div className="mt-8">
