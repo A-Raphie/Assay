@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Assay semantic tokens. Values mined from Binance's live theme on Sep 4, 2026
+   (binance.com/agent-os runtime CSS custom properties + static bundles).
+   Never use raw hexes in components: compose from these tokens only. */
+
+:root {
+  --background: #181a20; /* BasicBg */
+  --panel: #202630; /* CardBg */
+  --vessel: #29313d; /* Vessel */
+  --line: #333b47; /* Line: hairline elevation */
+  --ink: #eaecef; /* PrimaryText */
+  --ink-2: #929aa5; /* SecondaryText */
+  --ink-3: #707a8a; /* TertiaryText */
+  --accent: #f0b90b; /* PrimaryYellow: brand, links */
+  --accent-bright: #fcd535; /* BtnBg: action surfaces */
+  --on-accent: #202630; /* TextOnYellow */
+  --pass: #2ebd85; /* Buy/Success */
+  --deny: #f6465d; /* Sell/Error */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-panel: var(--panel);
+  --color-vessel: var(--vessel);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-on-accent: var(--on-accent);
+  --color-pass: var(--pass);
+  --color-deny: var(--deny);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-card: 4px; /* Binance's button radius */
+  --radius-stamp: 2px;
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-feature-settings: "tnum" 1; /* tabular numerals everywhere data shows */
+}
