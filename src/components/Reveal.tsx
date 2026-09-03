@@ -99,7 +99,7 @@ export function TaglineReveal({ words }: { words: string }) {
         <span
           key={i}
           className="transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-          style={{ color: i < active ? "var(--ink)" : "color-mix(in srgb, var(--ink) 30%, transparent)" }}
+          style={{ color: i < active ? "var(--ink)" : "color-mix(in srgb, var(--ink) 45%, transparent)" }}
         >
           {w}{" "}
         </span>

@@ -11,12 +11,13 @@
   --line: #333b47; /* Line: hairline elevation */
   --ink: #eaecef; /* PrimaryText */
   --ink-2: #929aa5; /* SecondaryText */
-  --ink-3: #707a8a; /* TertiaryText */
+  --ink-3: #8791a0; /* TertiaryText, AA-lifted from Binance's #707A8A (4.59:1 on panel, was 3.50) */
   --accent: #f0b90b; /* PrimaryYellow: brand, links */
   --accent-bright: #fcd535; /* BtnBg: action surfaces */
   --on-accent: #202630; /* TextOnYellow */
   --pass: #2ebd85; /* Buy/Success */
-  --deny: #f6465d; /* Sell/Error */
+  --deny: #f6465d; /* Sell/Error: stamps, borders, large text */
+  --deny-text: #f76d7f; /* AA tint of deny for small text on panel (5.39:1) */
 }
 
 @theme inline {
@@ -32,6 +33,7 @@
   --color-on-accent: var(--on-accent);
   --color-pass: var(--pass);
   --color-deny: var(--deny);
+  --color-deny-text: var(--deny-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --radius-card: 4px; /* Binance's button radius */

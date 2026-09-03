@@ -55,6 +55,11 @@ export function Desk() {
   const [symbol, setSymbol] = useState("BTCUSDC");
   const [notional, setNotional] = useState("50");
 
+  const clearFeed = () => {
+    setFeed([]);
+    saveFeed([]);
+  };
+
   useEffect(() => {
     setFeed(loadFeed());
     let on = true;
@@ -246,8 +251,18 @@ export function Desk() {
       <section aria-label="Activity feed" className="grid content-start gap-4">
         <div className="flex items-baseline justify-between">
           <h2 className="font-mono text-sm tracking-widest text-ink-2">THE DOCKET</h2>
-          <span className="font-mono text-xs text-ink-3">
-            {feed.length} {feed.length === 1 ? "entry" : "entries"}
+          <span className="flex items-baseline gap-4">
+            <span className="font-mono text-xs text-ink-3">
+              {feed.length} {feed.length === 1 ? "entry" : "entries"}
+            </span>
+            {feed.length > 0 && (
+              <button
+                onClick={clearFeed}
+                className="font-mono text-xs text-ink-3 underline decoration-line underline-offset-4 transition-colors duration-150 hover:text-deny"
+              >
+                clear
+              </button>
+            )}
           </span>
         </div>
 

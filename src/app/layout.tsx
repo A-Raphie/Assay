@@ -18,6 +18,7 @@ const description =
   "Assay checks every order your AI agent proposes through the Binance MCP Server against your three rules: resized, blocked, or passed, with the reason in plain words and the transcript hash attached.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://assay-psi-one.vercel.app"),
   title,
   description,
   openGraph: {
@@ -45,7 +46,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-card focus:bg-accent-bright focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-on-accent"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

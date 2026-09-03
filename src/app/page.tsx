@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DocketCard } from "@/components/DocketCard";
 import { Reveal, TaglineReveal } from "@/components/Reveal";
+import { SiteFooter } from "@/components/SiteFooter";
 import { heroProof } from "@/lib/proof";
 
 const STEPS = [
@@ -33,7 +34,7 @@ export default function FrontDoor() {
   const proof = heroProof();
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-6 pb-0">
+    <main id="main" className="mx-auto w-full max-w-6xl px-6 pb-0">
       {/* Hero: claim + real product proof side by side */}
       <section className="grid items-center gap-10 pb-16 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
@@ -91,6 +92,35 @@ export default function FrontDoor() {
         <TaglineReveal words="An agent that cannot explain an order should not place it. Assay makes the explanation the product." />
       </section>
 
+      {/* The problem, with numbers: same prompt, two outcomes */}
+      <section className="border-t border-line py-16">
+        <h2 className="font-mono text-sm tracking-widest text-ink-2">ONE PROMPT, TWO OUTCOMES</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-2">
+          An agent is told to deploy 1,000 USDC into a memecoin. Paper equity: 1,000 USDC on both
+          sides. This is a real recorded session, not a story:
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-card border border-deny/60 bg-panel p-6">
+            <p className="font-mono text-xs tracking-widest text-deny-text">RAW MCP</p>
+            <p className="mt-3 text-3xl font-bold tabular-nums">1,000.00 <span className="text-base font-medium text-ink-2">USDC out the door</span></p>
+            <ul className="mt-4 grid gap-1.5 text-sm text-ink-2">
+              <li>0 checks between the prompt and the fill</li>
+              <li>no allowlist, no cap, no receipt</li>
+              <li>the agent's word is the only record</li>
+            </ul>
+          </div>
+          <div className="rounded-card border border-pass/60 bg-panel p-6">
+            <p className="font-mono text-xs tracking-widest text-pass">THROUGH ASSAY</p>
+            <p className="mt-3 text-3xl font-bold tabular-nums">0.00 <span className="text-base font-medium text-ink-2">USDC out the door</span></p>
+            <ul className="mt-4 grid gap-1.5 text-sm text-ink-2">
+              <li>blocked on sight: DOGE is not on the allowlist</li>
+              <li>verdict cites Rule 3, word for word</li>
+              <li>sha256 of the exact MCP response on the card</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section aria-label="How it works" className="border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">HOW IT WORKS</h2>
@@ -137,19 +167,55 @@ export default function FrontDoor() {
         </ul>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-line py-10">
-        <div className="flex flex-wrap items-baseline justify-between gap-4">
-          <p className="font-mono text-xs text-ink-3">assay · built by Raphie for the Binance Agent OS Mini Hackathon</p>
-          <div className="flex gap-6 font-mono text-xs">
-            <Link href="/desk" className="text-ink-2 hover:text-accent">desk</Link>
-            <Link href="/rules" className="text-ink-2 hover:text-accent">rules</Link>
-            <a href="https://github.com/A-Raphie/assay" target="_blank" rel="noreferrer" className="text-ink-2 hover:text-accent">
-              github
-            </a>
-          </div>
+      {/* Judge proof: curl-able verdict */}
+      <section className="border-t border-line py-16">
+        <h2 className="font-mono text-sm tracking-widest text-ink-2">JUDGE IT YOURSELF, NO UI REQUIRED</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-2">
+          The verdict endpoint runs the same engine over the same committed transcript. Judge any
+          order from a terminal:
+        </p>
+        <div className="mt-4 overflow-x-auto rounded-card border border-line bg-vessel p-4">
+          <code className="font-mono text-xs leading-relaxed text-ink whitespace-nowrap">
+            curl -s "https://assay-psi-one.vercel.app/api/verdict?symbol=DOGEUSDT&notional=1000" | jq
+          </code>
         </div>
-      </footer>
+        <p className="mt-3 text-xs leading-relaxed text-ink-3">
+          Returns the recorded price, its sha256, and the verdict JSON. Change notional, change the
+          verdict: 50 into BTC passes, 100 into BTC resizes to your cap.
+        </p>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-line py-16">
+        <h2 className="font-mono text-sm tracking-widest text-ink-2">STRAIGHT ANSWERS</h2>
+        <dl className="mt-6 grid gap-5">
+          {[
+            ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the Binance MCP Server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
+            ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
+            ["Which agents work with it?", "Any of them. Claude Code, Codex, ChatGPT, VS Code: if it speaks MCP, its orders can be judged. Assay is a check, not a framework."],
+            ["What happens when a rule fires?", "The order is resized, blocked, or halted, and the docket card cites the rule in your own words with the transcript hash attached."],
+          ].map(([q, a]) => (
+            <div key={q} className="grid gap-1.5">
+              <dt className="text-sm font-semibold text-ink">{q}</dt>
+              <dd className="text-sm leading-relaxed text-ink-2">{a}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="border-t border-line py-16 text-center">
+        <p className="text-2xl font-semibold tracking-tight">See it judge an order in twenty seconds.</p>
+        <Link
+          href="/desk"
+          className="mt-6 inline-block rounded-card bg-accent-bright px-6 py-3 font-mono text-sm font-semibold tracking-wide text-on-accent transition-transform duration-150 hover:bg-accent active:scale-[0.98]"
+        >
+          Enter the desk
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <SiteFooter />
     </main>
   );
 }

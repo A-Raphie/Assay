@@ -118,7 +118,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
               key={a}
               type="button"
               onClick={() => onChange({ ...rules, allowlist: rules.allowlist.filter((x) => x !== a) })}
-              className="group rounded-stamp border border-line bg-vessel px-2.5 py-1 font-mono text-sm text-ink transition-colors duration-150 hover:border-deny hover:text-deny active:scale-[0.98]"
+              className="group rounded-stamp border border-line bg-vessel px-3 py-1.5 font-mono text-sm text-ink transition-colors duration-150 hover:border-deny hover:text-deny active:scale-[0.98]"
               title="Click to remove"
             >
               {a} <span className="text-ink-3 group-hover:text-deny">×</span>
