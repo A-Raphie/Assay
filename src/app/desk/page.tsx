@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Desk } from "@/components/Desk";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const metadata = { title: "Desk · Assay" };
+export const metadata = { title: "Desk · assay" };
 
 export default function DeskPage() {
   return (

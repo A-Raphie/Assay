@@ -1,4 +1,4 @@
-# Assay: submission package
+# assay: submission package
 
 Event: Binance Agent OS Mini Hackathon · Track A
 Deadline: Sep 8, 2026 23:59 UTC
@@ -6,22 +6,22 @@ Entry: follow @Binance + repost the announcement, reply or quote with video/demo
 
 ## OVERVIEW
 
-Assay is the pre-trade check for Binance Agent OS. AI agents connected through the Binance MCP Server can place real orders on your Agentic sub-account, but nothing checks them first. Assay does: orders are priced against the real book and judged against three user rules (max percent per trade, daily loss halt, symbol allowlist). Oversized orders are resized, forbidden symbols are blocked, red days halt everything, and every verdict cites its rule in plain words with the transcript hash attached.
+assay is the pre-trade check for Binance Agent OS. AI agents connected through the Binance MCP Server can place real orders on your Agentic sub-account, but nothing checks them first. assay does: orders are priced against the real book and judged against three user rules (max percent per trade, daily loss halt, symbol allowlist). Oversized orders are resized, forbidden symbols are blocked, red days halt everything, and every verdict cites its rule in plain words with the transcript hash attached.
 
 One engine, two modes: LIVE (real MCP reads against your sub-account) and REPLAY (the same engine over hash-verified recorded transcripts, deterministic for judging).
 
 Links:
-- Live: https://assay-psi-one.vercel.app
+- Live: https://tryassay.vercel.app
 - Repo: https://github.com/A-Raphie/assay
 - Video: [to add after final cut]
 
 ## FORM-ANSWERS (drafts)
 
 What is your project in one sentence?
-: Assay checks every AI agent order against your rules before it reaches the Binance MCP Server, and gives you a plain-language verdict with proof attached.
+: assay checks every AI agent order against your rules before it reaches the Binance MCP Server, and gives you a plain-language verdict with proof attached.
 
 What does it use from Agent OS?
-: The Binance MCP Server (agent.binance.com/mcp/agentic) for market data, account reads, and (gated) trade execution, plus the Agentic sub-account permission model. It is the only channel Assay uses: remove Agent OS and Assay has nothing to check.
+: The Binance MCP Server (agent.binance.com/mcp/agentic) for market data, account reads, and (gated) trade execution, plus the Agentic sub-account permission model. It is the only channel assay uses: remove Agent OS and assay has nothing to check.
 
 Which Track A workflow family does it belong to?
 : Trading Workflows (signals, strategies, automated actions), with Data & Analysis as a second family (the Docket proof cards analyze every verdict and fill).
@@ -34,7 +34,7 @@ Is execution live?
 
 ## JUDGING-MATRIX
 
-| Criterion (as published) | Where Assay scores |
+| Criterion (as published) | Where assay scores |
 |---|---|
 | Agent OS centrality | MCP Server is the only data/account channel; Agentic sub-account model is respected (no withdrawals, scoped token) |
 | Track A: Trading Workflows | The product IS an automated trading action: pre-trade check with resize/block/halt |
@@ -46,7 +46,7 @@ Is execution live?
 ## X_POST (draft; run through humaniser before posting)
 
 found a hole in Agent OS: one prompt can move your whole sub-account.
-so i built Assay: the check every agent order has to pass.
+so i built assay: the check every agent order has to pass.
 orders over your cap get cut. off-list symbols get blocked. red days halt everything.
 every verdict cites the rule and carries the hash of the real MCP response.
 built on the Binance MCP Server, live here: [link] · repo: [link]

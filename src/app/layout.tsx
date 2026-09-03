@@ -13,20 +13,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = "Assay · let your AI agent trade without handing it the keys";
+const title = "assay · let your AI agent trade without handing it the keys";
 const description =
-  "Assay checks every order your AI agent proposes through the Binance MCP Server against your three rules: resized, blocked, or passed, with the reason in plain words and the transcript hash attached.";
+  "assay checks every order your AI agent proposes through the Binance MCP Server against your three rules: resized, blocked, or passed, with the reason in plain words and the transcript hash attached.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://assay-psi-one.vercel.app"),
+  metadataBase: new URL("https://tryassay.vercel.app"),
   title,
   description,
   openGraph: {
     title,
     description,
     type: "website",
-    url: "https://assay-psi-one.vercel.app",
-    siteName: "Assay",
+    url: "https://tryassay.vercel.app",
+    siteName: "assay",
   },
   twitter: {
     card: "summary_large_image",

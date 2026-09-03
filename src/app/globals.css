@@ -36,8 +36,10 @@
   --color-deny-text: var(--deny-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --radius-card: 4px; /* Binance's button radius */
+  --radius-card: 14px; /* winsznx card radius: soft, not binance-4px sharp */
   --radius-stamp: 2px;
+  --shadow-card: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --glow-accent: rgba(240, 185, 11, 0.35);
 }
 
 body {
@@ -45,6 +47,53 @@ body {
   color: var(--ink);
   font-feature-settings: "tnum" 1; /* tabular numerals everywhere data shows */
 }
+
+/* winsznx depth grammar: soft card shadow, hover lift + faint accent glow ring */
+.card-depth {
+  box-shadow: var(--shadow-card);
+}
+.card-hover {
+  transition:
+    border-color 0.7s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.7s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.2s ease-out;
+}
+.card-hover:hover {
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px var(--glow-accent),
+    0 0 24px -6px var(--glow-accent);
+}
+
+/* Hero numbers: 800 weight, tight tracking, clamp size (winsznx money class) */
+.number-xl {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(44px, 6vw, 68px);
+  line-height: 1;
+}
+
+/* Status dot: green + "live" pairing */
+.dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--pass);
+  box-shadow: 0 0 8px var(--pass);
+  display: inline-block;
+}
+
+/* Price tick flash when the live number moves */
+@keyframes tick-up {
+  0% { color: var(--pass); }
+  100% { color: inherit; }
+}
+@keyframes tick-down {
+  0% { color: var(--deny); }
+  100% { color: inherit; }
+}
+.tick-up { animation: tick-up 1.2s ease-out; }
+.tick-down { animation: tick-down 1.2s ease-out; }
 
 /* The Assay stamp: a verdict struck into the card, once, like a hallmark.
    Scale and opacity only: rotation is the element's own `rotate` property,

@@ -40,7 +40,7 @@ export function DocketCard({
     <article
       data-testid="docket-card"
       data-state={verdict.action}
-      className="relative overflow-hidden rounded-card border border-line bg-panel p-5 transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-ink-3"
+      className="relative overflow-hidden rounded-card border border-line bg-panel p-5 card-depth card-hover"
     >
       <header className="flex items-center justify-between gap-3">
         <span className="font-mono text-xs text-ink-3">{serial}</span>

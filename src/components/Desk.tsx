@@ -277,7 +277,7 @@ export function Desk() {
             <p className="text-sm text-ink-2">No orders checked yet.</p>
             <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-ink-3">
               {mode === "LIVE"
-                ? "Propose any order on the left: Assay prices it against the real book and judges it before Binance ever sees it."
+                ? "Propose any order on the left: assay prices it against the real book and judges it before Binance ever sees it."
                 : "See it work in one click: a 1,000 USDC meme order meets the 2% cap and the allowlist."}
             </p>
             {mode === "REPLAY" && (
@@ -297,20 +297,33 @@ export function Desk() {
           </div>
         )}
 
-        {feed.map((f) => (
-          <DocketCard
-            key={f.serial}
-            serial={`${f.serial} · ${f.at}${f.scenario ? ` · ${f.scenario}` : ""}`}
-            verdict={f.verdict}
-            symbol={f.order.symbol}
-            notional={f.order.notional}
-            price={f.price}
-            transcriptHash={f.transcriptHash}
-            entryHash={f.entryHash}
-            mode={f.mode}
-            animate
-          />
-        ))}
+        {feed.map((f) => {
+          const shareId = btoa(JSON.stringify({ s: f.order.symbol, n: f.order.notional, r: rules.maxTradePct }))
+            .replace(/\+/g, "-")
+            .replace(/\//g, "_")
+            .replace(/=+$/, "");
+          return (
+            <div key={f.serial} className="grid gap-2">
+              <DocketCard
+                serial={`${f.serial} · ${f.at}${f.scenario ? ` · ${f.scenario}` : ""}`}
+                verdict={f.verdict}
+                symbol={f.order.symbol}
+                notional={f.order.notional}
+                price={f.price}
+                transcriptHash={f.transcriptHash}
+                entryHash={f.entryHash}
+                mode={f.mode}
+                animate
+              />
+              <a
+                href={`/d/${shareId}`}
+                className="w-fit font-mono text-[11px] text-ink-3 underline decoration-line underline-offset-4 transition-colors duration-150 hover:text-accent"
+              >
+                public link: this verdict, re-judged live
+              </a>
+            </div>
+          );
+        })}
       </section>
     </div>
   );
