@@ -59,7 +59,7 @@ async function cmdShare(symbol, notional) {
 }
 
 async function cmdPages() {
-  for (const p of ["/", "/desk", "/rules"]) {
+  for (const p of ["/", "/try", "/desk", "/rules"]) {
     const { status, text } = await getHTML(p);
     ok(`page ${p} -> HTTP 200`, status === 200);
     ok(`page ${p} -> brand present`, text.includes("Assay"));

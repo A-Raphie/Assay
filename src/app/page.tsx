@@ -55,7 +55,7 @@ export default function FrontDoor() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              href="#try"
+              href="/try"
               className="rounded-card bg-accent-bright px-6 py-3 font-mono text-sm font-semibold tracking-wide text-on-accent transition-all duration-150 hover:bg-accent hover:shadow-[0_0_20px_var(--glow-accent)] active:scale-[0.98]"
             >
               Judge an order here
