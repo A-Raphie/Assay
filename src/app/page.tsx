@@ -64,8 +64,9 @@ export default function FrontDoor() {
           </div>
         </div>
 
-        {/* Live instrument: hero number + sparkline + real proof card */}
-        <Reveal delay={100}>
+        {/* Live instrument: hero number + sparkline + real proof card. Never gated
+            behind JS: above-the-fold content renders visible, full stop. */}
+        <div>
           <div className="grid gap-4">
             <h2 className="sr-only">Live market instrument and a verdict judged fresh</h2>
             <div className="rounded-card border border-line bg-panel p-6 card-depth">
@@ -89,7 +90,7 @@ export default function FrontDoor() {
               />
             )}
           </div>
-        </Reveal>
+        </div>
       </section>
 
       {/* Try box: do the one job in five seconds */}
