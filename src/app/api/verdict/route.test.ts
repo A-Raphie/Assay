@@ -75,12 +75,11 @@ describe("GET /api/verdict", () => {
     expect(body.error).toContain("no recorded ticker");
   });
 
-  it("sanitizes hostile input", async () => {
-    // recorded symbol + hostile notional: -5 clamps to 0, cap resolves to nothing
+  it("rejects non-positive notional with a 400", async () => {
     const res = await GET(req("https://assay.test/api/verdict?symbol=BTCUSDT&notional=-5"));
+    expect(res.status).toBe(400);
     const body = await res.json();
-    expect(body.requested.notional).toBe(0);
-    expect(body.verdict.action).toBe("BLOCK");
+    expect(body.error).toContain("positive");
   });
 
   it("strips hostile characters from the symbol", async () => {
