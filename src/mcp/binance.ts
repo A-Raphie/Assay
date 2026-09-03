@@ -46,13 +46,22 @@ export class BinanceMcp {
       throw new Error(`MCP ${method} failed: HTTP ${res.status} ${await res.text().catch(() => "")}`);
     }
     const text = await res.text();
+    // Notifications get HTTP 200 with an empty body: nothing to parse.
+    if (text.length === 0) return null;
     // Streamable HTTP may answer as SSE (data: lines) or plain JSON.
     const payload = text.startsWith("event:") || text.startsWith("data:")
       ? JSON.parse(text.split("\n").filter((l) => l.startsWith("data:")).map((l) => l.slice(5).trim()).join(""))
       : JSON.parse(text);
-    if (record) this.record(method === "tools/call" ? String((params as any)?.name ?? method) : method, body, text);
+    if (record) this.record(BinanceMcp.toolLabel(method, params), body, text);
     if (payload.error) throw new Error(`MCP ${method} error ${payload.error.code}: ${payload.error.message}`);
     return payload.result;
+  }
+
+  /** Human-meaningful tool label for the transcript. */
+  private static toolLabel(method: string, params: any): string {
+    if (method !== "tools/call") return method;
+    if (params?.name === "tool_execute") return String(params?.arguments?.toolName ?? "tool_execute");
+    return String(params?.name ?? method);
   }
 
   private record(tool: string, argsJson: string, responseJson: string) {
