@@ -25,6 +25,12 @@ export function Reveal({
       setShown(true);
       return;
     }
+    // In-viewport at mount: show synchronously. Never gate above-the-fold
+    // content behind the observer (a missed IO callback blanks the hero).
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      setShown(true);
+      return;
+    }
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {

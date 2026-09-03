@@ -10,7 +10,7 @@ export default function RulesPage() {
     <main className="mx-auto flex min-h-[80vh] w-full max-w-3xl flex-col px-6 pb-10">
       <nav className="flex items-baseline justify-between pt-10">
         <Link href="/" className="font-mono text-sm text-ink-2 hover:text-accent">
-          assay
+          Assay
         </Link>
         <span className="font-mono text-sm text-accent" aria-current="page">
           rules
