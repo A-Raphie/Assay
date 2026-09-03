@@ -39,6 +39,7 @@ export function Desk() {
   const [mode, setMode] = useState<"LIVE" | "REPLAY">("REPLAY");
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [busy, setBusy] = useState(false);
+  const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [live, setLive] = useState<DeskResult | null>(null);
   const [symbol, setSymbol] = useState("BTCUSDC");
@@ -79,14 +80,18 @@ export function Desk() {
 
   const runLive = async () => {
     setBusy(true);
+    setBusyId("live");
     push(await proposeLive({ symbol, side: "BUY", notional: Number(notional), rules }), "LIVE");
     setBusy(false);
+    setBusyId(null);
   };
 
   const runReplay = async (id: string) => {
     setBusy(true);
+    setBusyId(id);
     push(await replayScenario(id, rules), "REPLAY");
     setBusy(false);
+    setBusyId(null);
   };
 
   return (
@@ -101,7 +106,7 @@ export function Desk() {
                 key={m}
                 onClick={() => setMode(m)}
                 aria-pressed={mode === m}
-                className={`rounded-card border px-3 py-2 font-mono text-sm tracking-widest transition-colors ${
+                className={`rounded-card border px-3 py-2 font-mono text-sm tracking-widest transition-all duration-150 active:scale-[0.98] ${
                   mode === m ? "border-accent bg-accent text-on-accent" : "border-line text-ink-2 hover:border-accent hover:text-accent"
                 }`}
               >
@@ -154,9 +159,9 @@ export function Desk() {
               <button
                 onClick={runLive}
                 disabled={busy}
-                className="rounded-card bg-accent-bright px-4 py-2.5 font-mono text-sm font-semibold tracking-wide text-on-accent hover:bg-accent disabled:opacity-50"
+                className="rounded-card bg-accent-bright px-4 py-2.5 font-mono text-sm font-semibold tracking-wide text-on-accent transition-all duration-150 hover:bg-accent active:scale-[0.98] disabled:opacity-50"
               >
-                {busy ? "Checking…" : "Run the check"}
+                {busyId === "live" ? "Judging…" : "Run the check"}
               </button>
             </div>
             {live?.price && (
@@ -180,9 +185,9 @@ export function Desk() {
                   key={s.id}
                   onClick={() => runReplay(s.id)}
                   disabled={busy}
-                  className="rounded-card border border-line bg-vessel px-3 py-2.5 text-left font-mono text-sm text-ink hover:border-accent hover:text-accent disabled:opacity-50"
+                  className="rounded-card border border-line bg-vessel px-3 py-2.5 text-left font-mono text-sm text-ink transition-all duration-150 hover:border-accent hover:text-accent active:scale-[0.98] disabled:opacity-50"
                 >
-                  {s.label}
+                  {busyId === s.id ? "Judging…" : s.label}
                 </button>
               ))}
             </div>
@@ -197,7 +202,9 @@ export function Desk() {
       <section aria-label="Activity feed" className="grid content-start gap-4">
         <div className="flex items-baseline justify-between">
           <h2 className="font-mono text-sm tracking-widest text-ink-2">THE DOCKET</h2>
-          <span className="font-mono text-xs text-ink-3">{feed.length} entries</span>
+          <span className="font-mono text-xs text-ink-3">
+            {feed.length} {feed.length === 1 ? "entry" : "entries"}
+          </span>
         </div>
 
         {error && (
@@ -209,11 +216,25 @@ export function Desk() {
         {feed.length === 0 && (
           <div className="rounded-card border border-dashed border-line px-6 py-10 text-center">
             <p className="text-sm text-ink-2">No orders checked yet.</p>
-            <p className="mt-2 text-xs leading-relaxed text-ink-3">
+            <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-ink-3">
               {mode === "LIVE"
                 ? "Propose any order on the left: Assay prices it against the real book and judges it before Binance ever sees it."
-                : "Run a scenario on the left: the YOLO one shows a 1,000 USDC order getting cut to your cap in one strike."}
+                : "See it work in one click: a 1,000 USDC meme order meets the 2% cap and the allowlist."}
             </p>
+            {mode === "REPLAY" && (
+              <button
+                onClick={() => runReplay("yolo-doge")}
+                disabled={busy}
+                className="mt-4 rounded-card bg-accent-bright px-4 py-2 font-mono text-xs font-semibold tracking-wide text-on-accent transition-all duration-150 hover:bg-accent active:scale-[0.98] disabled:opacity-50"
+              >
+                {busyId === "yolo-doge" ? "Judging…" : "Run the YOLO scenario"}
+              </button>
+            )}
+            <div className="mx-auto mt-6 grid max-w-sm gap-2 opacity-40" aria-hidden>
+              <div className="h-4 w-1/3 rounded-sm bg-vessel" />
+              <div className="h-8 w-full rounded-sm bg-vessel" />
+              <div className="h-3 w-2/3 rounded-sm bg-vessel" />
+            </div>
           </div>
         )}
 

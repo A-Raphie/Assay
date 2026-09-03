@@ -1,10 +1,10 @@
 "use client";
 
-import { RulesEditor, useRules } from "@/components/RulesForm";
+import { RulesEditor, StampPlate, useRules } from "@/components/RulesForm";
 import Link from "next/link";
 
 export default function RulesPage() {
-  const [rules, update] = useRules();
+  const [rules, update, savedAt] = useRules();
   return (
     <main className="mx-auto w-full max-w-3xl px-6 pb-24">
       <nav className="flex items-baseline justify-between pt-10">
@@ -16,13 +16,24 @@ export default function RulesPage() {
         </Link>
       </nav>
 
-      <h1 className="mt-10 text-4xl font-bold tracking-tight">Your rules</h1>
+      <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="text-4xl font-bold tracking-tight">Your rules</h1>
+        <p
+          role="status"
+          className={`font-mono text-xs transition-opacity duration-500 ${savedAt ? "text-pass opacity-100" : "opacity-0"}`}
+        >
+          Saved · applies to the next check
+        </p>
+      </div>
       <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-2">
         Three rules, judged on every order before it reaches Binance. Saved in this browser only.
       </p>
 
-      <div className="mt-8 rounded-card border border-line bg-panel p-6">
-        <RulesEditor rules={rules} onChange={update} />
+      <div className="mt-8 grid gap-4 sm:grid-cols-[1fr_260px]">
+        <div className="rounded-card border border-line bg-panel p-6">
+          <RulesEditor rules={rules} onChange={update} />
+        </div>
+        <StampPlate rules={rules} />
       </div>
 
       <p className="mt-6 text-xs leading-relaxed text-ink-3">

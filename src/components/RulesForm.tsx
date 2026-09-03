@@ -32,8 +32,10 @@ export function saveRules(rules: RuleSet) {
   window.dispatchEvent(new Event("assay.rules.changed"));
 }
 
-export function useRules(): [RuleSet, (r: RuleSet) => void] {
+export function useRules(): readonly [RuleSet, (r: RuleSet) => void, number | null] {
   const [rules, setRules] = useState<RuleSet>(DEFAULT_RULES);
+  const [savedAt, setSavedAt] = useState<number | null>(null);
+
   useEffect(() => {
     setRules(loadRules());
     const sync = () => setRules(loadRules());
@@ -44,12 +46,18 @@ export function useRules(): [RuleSet, (r: RuleSet) => void] {
       window.removeEventListener("storage", sync);
     };
   }, []);
+
   const update = (r: RuleSet) => {
     saveRules(r);
     setRules(r);
+    setSavedAt(Date.now());
   };
-  return [rules, update];
+
+  return [rules, update, savedAt] as const;
 }
+
+const inputCls =
+  "w-28 rounded-card border border-line bg-vessel px-3 py-2 font-mono text-lg text-ink outline-none transition-colors duration-150 focus:border-accent focus-visible:ring-2 focus-visible:ring-accent/40";
 
 export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r: RuleSet) => void }) {
   const [chip, setChip] = useState("");
@@ -70,7 +78,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
             step={0.1}
             value={rules.maxTradePct}
             onChange={(e) => onChange({ ...rules, maxTradePct: Number(e.target.value) })}
-            className="w-28 rounded-card border border-line bg-vessel px-3 py-2 font-mono text-lg text-ink outline-none focus:border-accent"
+            className={inputCls}
           />
           <span className="font-mono text-sm text-ink-3">%</span>
         </span>
@@ -86,7 +94,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
             step={0.1}
             value={rules.dailyHaltPct}
             onChange={(e) => onChange({ ...rules, dailyHaltPct: Number(e.target.value) })}
-            className="w-28 rounded-card border border-line bg-vessel px-3 py-2 font-mono text-lg text-ink outline-none focus:border-accent"
+            className={inputCls}
           />
           <span className="font-mono text-sm text-ink-3">%</span>
         </span>
@@ -100,7 +108,7 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
               key={a}
               type="button"
               onClick={() => onChange({ ...rules, allowlist: rules.allowlist.filter((x) => x !== a) })}
-              className="group rounded-stamp border border-line bg-vessel px-2.5 py-1 font-mono text-sm text-ink hover:border-deny hover:text-deny"
+              className="group rounded-stamp border border-line bg-vessel px-2.5 py-1 font-mono text-sm text-ink transition-colors duration-150 hover:border-deny hover:text-deny active:scale-[0.98]"
               title="Click to remove"
             >
               {a} <span className="text-ink-3 group-hover:text-deny">×</span>
@@ -113,10 +121,27 @@ export function RulesEditor({ rules, onChange }: { rules: RuleSet; onChange: (r:
             onBlur={commitChip}
             placeholder="+ add"
             aria-label="Add allowlist asset"
-            className="w-24 rounded-stamp border border-dashed border-line bg-transparent px-2.5 py-1 font-mono text-sm text-ink placeholder:text-ink-3 outline-none focus:border-accent"
+            className="w-24 rounded-stamp border border-dashed border-line bg-transparent px-2.5 py-1 font-mono text-sm text-ink placeholder:text-ink-3 outline-none transition-colors duration-150 focus:border-accent"
           />
         </span>
       </div>
+    </div>
+  );
+}
+
+/** The rules exactly as verdicts will cite them. Live preview, same grammar as DocketCard. */
+export function StampPlate({ rules }: { rules: RuleSet }) {
+  return (
+    <div className="rounded-card border border-line bg-vessel p-5">
+      <p className="font-mono text-[11px] tracking-widest text-ink-3">YOUR STAMP PLATE</p>
+      <ul className="mt-3 grid gap-2 font-mono text-sm text-ink">
+        <li className="border-l-2 border-accent pl-3">Rule 1: max {rules.maxTradePct}% per trade</li>
+        <li className="border-l-2 border-accent pl-3">Rule 2: halt at {rules.dailyHaltPct}% daily loss</li>
+        <li className="border-l-2 border-accent pl-3">
+          Rule 3: {rules.allowlist.length ? rules.allowlist.join(", ") : "nothing"} only
+        </li>
+      </ul>
+      <p className="mt-3 font-mono text-[11px] text-ink-3">Every verdict on the desk cites these, word for word.</p>
     </div>
   );
 }

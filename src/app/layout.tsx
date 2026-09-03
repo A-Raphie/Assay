@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -13,10 +13,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = "Assay · the check every Binance agent order must pass";
+const description =
+  "Assay checks every AI agent order against your rules before it reaches the Binance MCP Server: resized, blocked, or passed, with the reason in plain words and the transcript hash attached.";
+
 export const metadata: Metadata = {
-  title: "Assay · the check every Binance agent order must pass",
-  description:
-    "Assay checks every AI agent order against your rules before it reaches the Binance MCP Server: resized, blocked, or passed, with the reason in plain words.",
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    url: "https://assay-psi-one.vercel.app",
+    siteName: "Assay",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#181A20",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

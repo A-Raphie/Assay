@@ -45,18 +45,19 @@ body {
 }
 
 /* The Assay stamp: a verdict struck into the card, once, like a hallmark.
-   Stillness everywhere else. Disabled for reduced-motion users. */
+   Scale and opacity only: rotation is the element's own `rotate` property,
+   so animation and layout transforms never fight. Reduced-motion: off. */
 @keyframes stamp-strike {
   0% {
-    transform: translateY(-50%) rotate(-8deg) scale(1.7);
+    scale: 1.7;
     opacity: 0;
   }
   55% {
-    transform: translateY(-50%) rotate(-8deg) scale(0.94);
+    scale: 0.94;
     opacity: 1;
   }
   100% {
-    transform: translateY(-50%) rotate(-8deg) scale(1);
+    scale: 1;
     opacity: 1;
   }
 }
