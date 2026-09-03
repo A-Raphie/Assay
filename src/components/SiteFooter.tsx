@@ -4,11 +4,22 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-line py-10">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline justify-between gap-4 px-6">
-        <p className="font-mono text-xs text-ink-3">Assay · built by Raphie for the Binance Agent OS Mini Hackathon</p>
+        <p className="font-mono text-xs text-ink-3">
+          Assay · built by{" "}
+          <a
+            href="https://x.com/a_raphie"
+            target="_blank"
+            rel="noreferrer"
+            className="text-ink-2 underline decoration-line underline-offset-4 transition-colors duration-150 hover:text-accent hover:decoration-accent"
+          >
+            Raphie
+          </a>{" "}
+          for the Binance Agent OS Mini Hackathon
+        </p>
         <div className="flex gap-6 font-mono text-xs">
           <Link href="/desk" className="text-ink-2 hover:text-accent">desk</Link>
           <Link href="/rules" className="text-ink-2 hover:text-accent">rules</Link>
-          <a href="https://github.com/A-Raphie/assay" target="_blank" rel="noreferrer" className="text-ink-2 hover:text-accent">
+          <a href="https://github.com/A-Raphie/Assay" target="_blank" rel="noreferrer" className="text-ink-2 hover:text-accent">
             github
           </a>
         </div>

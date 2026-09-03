@@ -3,7 +3,7 @@
 Running log of decisions, conventions, and gotchas. Newest at the top. One line per entry where possible.
 
 ## Decisions
-- **2026-09-03** — Name: Assay (naming skill, full fidelity). Real word, metallurgy test of metal; hook: "This is Assay, the check every Binance agent order must pass." Availability: GitHub free, npm assaykit free, tryassay.app free; X assay/assayapp taken; assay.finance unrelated fintech (accepted, repo-level naming).
+- **2026-09-03** — Name: Assay (naming skill, full fidelity), ALWAYS capital A in brand surfaces (his hard rule after the lowercase misread). Real word, metallurgy test of metal; hook: "This is Assay, the check every Binance agent order must pass." Availability: GitHub free, npm assaykit free, tryassay.app free; X assay/assayapp taken; assay.finance unrelated fintech (accepted, repo-level naming).
 - **2026-09-03** — Dual mode LIVE + REPLAY sharing one engine. Reason: KYC timing is the top schedule risk; replay of hash-stamped real transcripts is mock-hunter-safe and deterministic on camera.
 - **2026-09-03** — Spot-only rules v1. Reason: leverage/liquidation semantics break the 2%/5% model; honesty over coverage.
 - **2026-09-03** — Static Bearer token from Codex OAuth (keychain) instead of client-side OAuth. Reason: Binance rejects dynamic client registration; ZCode MCP probe also times out (3-step handshake ~2.9s each vs 5s probe). Direct JSON-RPC works.

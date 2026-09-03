@@ -14,8 +14,6 @@ const RULES = [
   { id: "Rule 3", name: "Allowlist", line: "BTC, ETH, BNB by default. Anything else is blocked on sight, however confident the agent sounds." },
 ];
 
-const WORKS_WITH = ["Binance Agent OS", "agent.binance.com/mcp/agentic", "Claude Code", "Codex", "ChatGPT", "VS Code"];
-
 export default function FrontDoor() {
   const proof = heroProof();
 
@@ -175,18 +173,6 @@ export default function FrontDoor() {
         <div className="mt-6">
           <ConnectSteps />
         </div>
-      </section>
-
-      {/* Works with */}
-      <section className="border-t border-line py-16">
-        <h2 className="font-mono text-sm tracking-widest text-ink-2">WORKS WITH</h2>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {WORKS_WITH.map((w) => (
-            <li key={w} className="rounded-full border border-line bg-panel px-3.5 py-2 font-mono text-xs text-ink-2">
-              {w}
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* FAQ */}
