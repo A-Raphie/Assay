@@ -277,7 +277,7 @@ export function Desk() {
             <p className="text-sm text-ink-2">No orders checked yet.</p>
             <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-ink-3">
               {mode === "LIVE"
-                ? "Propose any order on the left: assay prices it against the real book and judges it before Binance ever sees it."
+                ? "Propose any order on the left: Assay prices it against the real book and judges it before Binance ever sees it."
                 : "See it work in one click: a 1,000 USDC meme order meets the 2% cap and the allowlist."}
             </p>
             {mode === "REPLAY" && (

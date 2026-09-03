@@ -53,7 +53,7 @@ export default function OpengraphImage() {
             fontFamily: "monospace",
           }}
         >
-          assay · pre-trade checks for Binance Agent OS
+          Assay · pre-trade checks for Binance Agent OS
         </div>
         <div style={{ marginTop: 28, display: "flex", gap: 12 }}>
           {["PASSED", "RESIZED", "BLOCKED", "HALTED"].map((w, i) => (

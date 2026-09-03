@@ -9,7 +9,7 @@ const CONFIG = `{
     },
     "assay": {
       "url": "https://tryassay.vercel.app/api/verdict",
-      "note": "judge every order here before spot.newOrder"
+      "note": "Judge every order here before spot.newOrder"
     }
   }
 }`;

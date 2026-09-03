@@ -1,4 +1,4 @@
-# assay
+# Assay
 
 **Let your AI agent trade without handing it the keys.**
 
@@ -10,7 +10,7 @@ Built for the Binance Agent OS Mini Hackathon (Track A). Deadline Sep 8, 2026 23
 
 ## The judge path (90 seconds, no login)
 
-1. Open https://tryassay.vercel.app : one screen says what assay is. 15 seconds.
+1. Open https://tryassay.vercel.app : one screen says what Assay is. 15 seconds.
 2. Click **Enter the desk**. REPLAY mode is default. Click **YOLO: 1,000 USDC into DOGE**: a 1,000 USDC order gets blocked on the allowlist rule, stamped on screen, real recorded DOGE price, sha256 shown. 20 seconds.
 3. Click **Sane: 50 USDC into BTC**: the same order comes back RESIZED, 50.00 struck through, cut to 20.00, citing Rule 1: max 2% per trade. 20 seconds.
 4. Click **Red day: any order after -6%**: HALTED. Rule 2 wins over everything. 15 seconds.
@@ -52,9 +52,9 @@ Get a token: connect any compatible agent (Claude Code, Codex, ChatGPT, VS Code)
 
 ## Rubric mapping (Track A workflow families)
 
-- **Trading Workflows** (primary): assay IS an automated trading action, the guardrail kind: resize, block, halt with reasons.
+- **Trading Workflows** (primary): Assay IS an automated trading action, the guardrail kind: resize, block, halt with reasons.
 - **Data & Analysis** (secondary): the Docket: every fill or verdict becomes an analysis card with entry, price context, rule citation, transcript hash.
-- Agent OS centrality: the Binance MCP Server is the only market/account channel; remove it and assay has nothing to check.
+- Agent OS centrality: the Binance MCP Server is the only market/account channel; remove it and Assay has nothing to check.
 
 ## Credit
 

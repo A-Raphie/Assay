@@ -39,7 +39,7 @@ export default function FrontDoor() {
             Let your AI agent trade without handing it the keys.
           </h1>
           <p className="mt-6 max-w-[680px] text-pretty text-lg leading-relaxed text-ink-2">
-            assay checks every order your agent proposes through the binance mcp server against
+            Assay checks every order your agent proposes through the binance mcp server against
             three rules you own: a per-trade cap, a daily loss halt, an allowlist. oversized orders
             get cut, forbidden ones get stopped, and every verdict cites the rule that fired with
             proof attached.
@@ -94,7 +94,7 @@ export default function FrontDoor() {
 
       {/* Tagline reveal (B11) */}
       <section className="border-t border-line py-20 sm:py-24">
-        <TaglineReveal words="An agent that cannot explain an order should not place it. assay makes the explanation the product." />
+        <TaglineReveal words="An agent that cannot explain an order should not place it. Assay makes the explanation the product." />
       </section>
 
       {/* The problem, with numbers: same prompt, two outcomes */}
@@ -116,7 +116,7 @@ export default function FrontDoor() {
             </ul>
           </div>
           <div className="rounded-card border border-pass/60 bg-panel p-6 card-depth">
-            <p className="font-mono text-xs tracking-widest text-pass">THROUGH assay</p>
+            <p className="font-mono text-xs tracking-widest text-pass">THROUGH Assay</p>
             <p className="mt-3 number-xl tabular-nums">0.00</p>
             <p className="mt-1 text-sm text-ink-2">USDC out the door</p>
             <ul className="mt-4 grid gap-1.5 text-sm text-ink-2">
@@ -134,7 +134,7 @@ export default function FrontDoor() {
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {[
             { n: "1", title: "The agent proposes", body: "Your agent decides to trade and sizes an order through the Binance MCP Server." },
-            { n: "2", title: "assay prices and judges", body: "The order is priced against the real book and checked against your three rules before it is placed." },
+            { n: "2", title: "Assay prices and judges", body: "The order is priced against the real book and checked against your three rules before it is placed." },
             { n: "3", title: "You get the docket", body: "Passed, resized, blocked, halted: the rule that fired, in your words, with the hash attached." },
           ].map((s, i) => (
             <Reveal key={s.n} delay={i * 100}>
@@ -194,9 +194,9 @@ export default function FrontDoor() {
         <h2 className="font-mono text-sm tracking-widest text-ink-2">STRAIGHT ANSWERS</h2>
         <dl className="mt-6 grid gap-5">
           {[
-            ["Can assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
-            ["Is the replay data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
-            ["Which agents work with it?", "Any of them. Claude Code, Codex, ChatGPT, VS Code: if it speaks MCP, its orders can be judged. assay is a check, not a framework."],
+            ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
+            ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
+            ["Which agents work with it?", "Any of them. Claude Code, Codex, ChatGPT, VS Code: if it speaks MCP, its orders can be judged. Assay is a check, not a framework."],
             ["What happens when a rule fires?", "The order is resized, blocked, or halted, and the docket card cites the rule in your own words with the transcript hash attached."],
           ].map(([q, a]) => (
             <div key={q} className="grid gap-1.5">

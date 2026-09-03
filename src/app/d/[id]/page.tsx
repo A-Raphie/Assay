@@ -77,7 +77,7 @@ export default async function PublicDocket({ params }: { params: Promise<{ id: s
       ) : (
         <article className="rounded-card border border-line bg-panel p-8 card-depth">
           <header className="flex items-center justify-between gap-3">
-            <span className="font-mono text-xs tracking-widest text-ink-3">public docket · assay</span>
+            <span className="font-mono text-xs tracking-widest text-ink-3">public docket · Assay</span>
             <span
               className={`rounded-stamp border-2 px-3 py-1 font-mono text-lg font-bold tracking-[0.15em] rotate-[-6deg] ${stampCls(result.verdict.action)}`}
             >
@@ -120,7 +120,7 @@ export default async function PublicDocket({ params }: { params: Promise<{ id: s
               Judge your own order
             </Link>
             <Link href="/" className="self-center font-mono text-sm text-accent hover:underline">
-              what is assay?
+              what is Assay?
             </Link>
           </div>
         </article>
