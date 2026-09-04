@@ -23,7 +23,7 @@ export function TryBox() {
     setBusy(true);
     setError(null);
     try {
-      const r = await fetch(`/api/verdict?symbol=${encodeURIComponent(sym)}&notional=${encodeURIComponent(amt)}`);
+      const r = await fetch(`/api/verdict?symbol=${encodeURIComponent(sym)}&notional=${encodeURIComponent(amt)}&live=1`);
       const d = await r.json();
       if (!r.ok) setError(d.error ?? "verdict failed");
       else setResult(d);
@@ -110,13 +110,13 @@ export function TryBox() {
             {v?.reason}
           </p>
           <p className="font-mono text-[11px] text-ink-3">
-            price {result.market.price} (recorded) · entry sha256 {String(result.market.responseSha256).slice(0, 12)}…
+            price {result.market.price} ({result.market.source}) · entry sha256 {String(result.market.responseSha256).slice(0, 12)}…
           </p>
         </div>
       )}
       {!result && !error && (
         <p className="mt-4 text-xs leading-relaxed text-ink-3">
-          Judged against the real recorded price through the same engine the desk uses. Or type any
+          Judged at the live market price through the same engine the desk uses. Or type any
           symbol and amount yourself.
         </p>
       )}

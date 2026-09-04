@@ -33,7 +33,8 @@ function loadFeed(): FeedItem[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(FEED_KEY);
-    return raw ? (JSON.parse(raw) as FeedItem[]) : [];
+    const feed = raw ? (JSON.parse(raw) as FeedItem[]) : [];
+    return feed.sort((a, b) => (a.at < b.at ? 1 : a.at > b.at ? -1 : 0));
   } catch {
     return [];
   }
@@ -93,8 +94,9 @@ export function Desk() {
         },
         ...prev,
       ];
-      saveFeed(next);
-      return next;
+      const renumbered = next.map((f, i) => ({ ...f, serial: `ASSAY-${String(next.length - i).padStart(4, "0")}` }));
+      saveFeed(renumbered);
+      return renumbered;
     });
   }, []);
 

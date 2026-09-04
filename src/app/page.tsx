@@ -17,7 +17,7 @@ export default function FrontDoor() {
     <main id="main" className="mx-auto w-full max-w-6xl overflow-x-clip px-6 pb-0">
       {/* Mono status strip: mirror grammar (logos terminal) — ping dot, phrase, thin dividers */}
       <div className="border-b border-line bg-panel/40">
-        <div className="mx-auto flex w-full max-w-6xl items-center gap-4 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">
+        <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 sm:gap-4 sm:px-6 sm:tracking-[0.22em]">
           <Link href="/" className="font-semibold text-ink hover:text-accent">Assay</Link>
           <span className="h-3 w-px bg-line" aria-hidden />
           <span className="inline-flex items-center gap-2">
@@ -28,8 +28,8 @@ export default function FrontDoor() {
             Live feed
           </span>
           <span className="h-3 w-px bg-line" aria-hidden />
-          <span className="hidden sm:inline">Spot · replay transcript</span>
-          <span className="ml-auto hidden items-baseline gap-5 sm:flex">
+          <span className="hidden md:inline">Spot · replay transcript</span>
+          <span className="ml-auto flex items-baseline gap-3 sm:gap-5">
             <Link href="/try" className="transition-colors duration-150 hover:text-accent">try</Link>
             <Link href="/desk" className="transition-colors duration-150 hover:text-accent">desk</Link>
             <Link href="/rules" className="transition-colors duration-150 hover:text-accent">rules</Link>

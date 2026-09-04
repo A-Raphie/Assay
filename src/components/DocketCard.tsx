@@ -93,6 +93,7 @@ export function DocketCard({
         <p className="mt-4 text-sm text-ink-2">
           {verdict.citation ? `${verdict.citation} · ` : ""}live @{" "}
           {price ? Number(price.lastPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "…"}
+          {" "}· cap is 2% of 1,000 USDC paper equity
         </p>
 
         <footer className="mt-4 border-t border-line pt-3">
@@ -116,7 +117,7 @@ export function DocketCard({
           <span
             aria-hidden
             className={`rounded-stamp border-2 px-2.5 py-0.5 font-mono text-sm font-bold tracking-[0.15em] sm:absolute sm:right-6 sm:top-6 sm:rotate-[-7deg] sm:text-base sm:tracking-[0.2em] ${
-              verdict.action === "RESIZE" ? "border-accent text-accent" : "border-deny text-deny"
+              verdict.action === "RESIZE" ? "border-accent text-accent" : verdict.action === "HALT" ? "border-ink text-ink" : "border-deny text-deny"
             } ${animate ? "stamp-animate" : ""}`}
           >
             {verdict.action}

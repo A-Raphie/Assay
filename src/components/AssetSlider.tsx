@@ -56,7 +56,7 @@ export function AssetSlider({ value, onChange }: { value: string; onChange: (sym
           aria-selected={value === a.symbol}
           onClick={() => pick(i)}
           className={`relative z-10 rounded-full py-1.5 font-mono text-xs font-semibold tracking-widest transition-colors duration-300 ${
-            index === i ? "text-on-accent" : "text-ink-2 hover:text-ink"
+            index === i ? "text-on-accent" : "text-ink opacity-80 hover:opacity-100 hover:text-ink"
           }`}
         >
           {a.label}
