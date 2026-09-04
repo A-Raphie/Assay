@@ -12,6 +12,9 @@ export default function DeskPage() {
           Assay
         </Link>
         <div className="flex items-baseline gap-6">
+          <Link href="/try" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
+            try
+          </Link>
           <Link href="/rules" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
             rules
           </Link>

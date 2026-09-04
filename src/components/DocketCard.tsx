@@ -91,7 +91,8 @@ export function DocketCard({
         </p>
 
         <p className="mt-4 text-sm text-ink-2">
-          {verdict.citation ? `${verdict.citation} · ` : ""}live @ {price?.lastPrice ?? "…"}
+          {verdict.citation ? `${verdict.citation} · ` : ""}live @{" "}
+          {price ? Number(price.lastPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "…"}
         </p>
 
         <footer className="mt-4 border-t border-line pt-3">

@@ -63,7 +63,7 @@ export function LiveTicker({ symbol = "BTCUSDT" }: { symbol?: string }) {
         <span
           className={`number-xl flex h-[54px] items-center whitespace-nowrap tabular-nums md:h-[68px] ${flash ? (flash === "up" ? "tick-up" : "tick-down") : ""}`}
         >
-          {tick ? Number(tick.lastPrice).toLocaleString("en-US", { maximumFractionDigits: 2 }) : "…"}
+          {tick ? Number(tick.lastPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "…"}
         </span>
         <span className="flex min-h-[28px] items-center">
           {tick && (

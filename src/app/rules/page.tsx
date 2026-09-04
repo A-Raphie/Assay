@@ -13,6 +13,9 @@ export default function RulesPage() {
           Assay
         </Link>
         <div className="flex items-baseline gap-6">
+          <Link href="/try" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
+            try
+          </Link>
           <Link href="/desk" className="font-mono text-sm text-ink-2 transition-colors duration-150 hover:text-accent">
             desk
           </Link>

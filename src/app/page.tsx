@@ -29,8 +29,10 @@ export default function FrontDoor() {
           </span>
           <span className="h-3 w-px bg-line" aria-hidden />
           <span className="hidden sm:inline">Spot · replay transcript</span>
-          <span className="ml-auto hidden font-mono text-[10px] tracking-[0.22em] text-ink-3 sm:inline">
-            tryassay.vercel.app
+          <span className="ml-auto hidden items-baseline gap-5 sm:flex">
+            <Link href="/try" className="transition-colors duration-150 hover:text-accent">try</Link>
+            <Link href="/desk" className="transition-colors duration-150 hover:text-accent">desk</Link>
+            <Link href="/rules" className="transition-colors duration-150 hover:text-accent">rules</Link>
           </span>
         </div>
       </div>
@@ -39,14 +41,10 @@ export default function FrontDoor() {
       <section className="grid items-center gap-8 pb-10 pt-10 md:pt-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <h1 className="max-w-[680px] text-balance bg-gradient-to-r from-white to-[#9b9b9b] bg-clip-text text-5xl font-bold leading-[1.05] tracking-tight text-transparent sm:text-6xl">
-            Let your AI agent trade without handing it the keys.
+            Your agent places the trade. Your rules make the call.
           </h1>
           <p className="mt-6 max-w-[680px] text-pretty text-lg leading-relaxed text-ink-2">
-            Assay checks every order your agent proposes through the Binance MCP Server against
-            three rules you own: a per-trade cap, a daily loss halt, an allowlist. oversized orders
-            get cut, forbidden ones get stopped, and every verdict cites the rule that fired with
-            proof attached.
-          </p>
+            Assay is the check between your AI agent and Binance: a per-trade cap, a daily loss halt, and an allowlist, judged on every order before it goes through. Every verdict shows the rule that fired, with proof attached.</p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/try"

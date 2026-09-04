@@ -17,6 +17,7 @@ export function SiteFooter() {
           for the Binance Agent OS Mini Hackathon
         </p>
         <div className="flex gap-6 font-mono text-xs">
+          <Link href="/try" className="text-ink-2 hover:text-accent">try</Link>
           <Link href="/desk" className="text-ink-2 hover:text-accent">desk</Link>
           <Link href="/rules" className="text-ink-2 hover:text-accent">rules</Link>
           <a href="https://github.com/A-Raphie/Assay" target="_blank" rel="noreferrer" className="text-ink-2 hover:text-accent">

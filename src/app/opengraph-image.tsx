@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "assay: let your AI agent trade without handing it the keys";
+export const alt = "Assay: your agent places the trade, your rules make the call";
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -42,7 +42,7 @@ export default function OpengraphImage() {
             maxWidth: 1000,
           }}
         >
-          Let your AI agent trade without handing it the keys.
+          Your agent places the trade. Your rules make the call.
         </div>
         <div
           style={{

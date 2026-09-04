@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = "Assay · let your AI agent trade without handing it the keys";
+const title = "Assay · your agent places the trade, your rules make the call";
 const description =
   "Assay checks every order your AI agent proposes through the Binance MCP Server against your three rules: resized, blocked, or passed, with the reason in plain words and the transcript hash attached.";
 
