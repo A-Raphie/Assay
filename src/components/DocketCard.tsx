@@ -7,6 +7,20 @@ const STATE_STYLE: Record<Verdict["action"], { chip: string; word: string }> = {
   HALT: { chip: "border-deny text-deny", word: "HALTED" },
 };
 
+function Stamp({ verdict, animate }: { verdict: Verdict; animate?: boolean }) {
+  const show = verdict.action !== "PASS";
+  return (
+    <span
+      aria-hidden
+      className={`rounded-stamp border-2 px-2.5 py-0.5 font-mono text-sm font-bold tracking-[0.15em] sm:absolute sm:right-6 sm:top-6 sm:rotate-[-7deg] sm:text-base sm:tracking-[0.2em] ${
+        verdict.action === "RESIZE" ? "border-accent text-accent" : verdict.action === "PASS" ? "border-pass text-pass rotate-[-3deg]" : "border-deny text-deny"
+      } ${animate ? "stamp-animate" : ""}`}
+    >
+      {show ? verdict.action : "PASS"}
+    </span>
+  );
+}
+
 export function DocketCard({
   serial,
   verdict,
@@ -17,6 +31,7 @@ export function DocketCard({
   entryHash,
   mode,
   animate,
+  compact,
 }: {
   serial: string;
   verdict: Verdict;
@@ -27,15 +42,67 @@ export function DocketCard({
   entryHash?: string;
   mode: "LIVE" | "REPLAY";
   animate?: boolean;
+  /** Glance variant: the whole story in one line, for 4-second reads. */
+  compact?: boolean;
 }) {
-  const style = STATE_STYLE[verdict.action];
-  const showStamp = verdict.action !== "PASS";
   const finalNotional = verdict.adjustedNotional ?? notional;
   const trustLine = entryHash
     ? `entry sha256 ${entryHash.slice(0, 12)}…`
     : transcriptHash
       ? `transcript sha256 ${transcriptHash.slice(0, 12)}…`
       : "";
+
+  if (compact) {
+    const showStamp = verdict.action !== "PASS";
+    const amount = notional.toFixed(0);
+    const after =
+      verdict.action === "RESIZE" ? (
+        <span className="text-accent tabular-nums">{finalNotional.toFixed(0)}</span>
+      ) : null;
+    return (
+      <article
+        data-testid="docket-card"
+        data-state={verdict.action}
+        className="relative overflow-hidden rounded-card border border-line bg-panel p-6 card-depth card-hover"
+      >
+        <header className="flex items-center justify-between gap-3">
+          <span className="font-mono text-[11px] tracking-widest text-ink-3">LIVE SAMPLE</span>
+          <Stamp verdict={verdict} animate={animate} />
+        </header>
+
+        {/* The whole story in one glance: symbol, before -> after, stamp */}
+        <p className="mt-5 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+          {symbol.replace(/(USDT|USDC)$/, "")} ·{" "}
+          {verdict.action === "RESIZE" ? (
+            <>
+              <s className="text-ink-3 tabular-nums">{amount}</s> {after}{" "}
+              <span className="text-ink-2">USDC</span>
+            </>
+          ) : verdict.action === "PASS" ? (
+            <span className="tabular-nums">
+              {amount} <span className="text-ink-2">USDC</span>
+            </span>
+          ) : (
+            <>
+              <s className="text-ink-3 tabular-nums">{amount}</s>{" "}
+              <span className="text-ink-2">USDC · stopped</span>
+            </>
+          )}
+        </p>
+
+        <p className="mt-4 text-sm text-ink-2">
+          {verdict.citation ? `${verdict.citation} · ` : ""}live @ {price?.lastPrice ?? "…"}
+        </p>
+
+        <footer className="mt-4 border-t border-line pt-3">
+          <span className="font-mono text-[11px] text-ink-3">{trustLine}</span>
+        </footer>
+      </article>
+    );
+  }
+
+  const style = STATE_STYLE[verdict.action];
+  const showStamp = verdict.action !== "PASS";
   return (
     <article
       data-testid="docket-card"
@@ -54,11 +121,8 @@ export function DocketCard({
             {verdict.action}
           </span>
         ) : (
-          <span
-            aria-hidden
-            className={`rounded-stamp border-2 px-2.5 py-0.5 font-mono text-sm font-bold tracking-[0.15em] rotate-[-3deg] ${style.chip} ${animate ? "stamp-animate" : ""}`}
-          >
-            PASS
+          <span className={`rounded-stamp border px-2 py-0.5 font-mono text-[11px] tracking-widest ${style.chip}`}>
+            {style.word}
           </span>
         )}
       </header>

@@ -60,13 +60,14 @@ export function HeroRail() {
       <div aria-live="polite">
         {sample ? (
           <DocketCard
-            serial={`live sample · ${symbol} · judged from the live feed`}
+            serial="live sample"
             verdict={sample.verdict}
             symbol={sample.symbol}
             notional={sample.notional}
             price={sample.price}
             transcriptHash={sample.responseSha256 ?? undefined}
             mode="LIVE"
+            compact
           />
         ) : (
           <div className="rounded-card border border-line bg-panel p-5 card-depth" aria-hidden>
@@ -75,7 +76,7 @@ export function HeroRail() {
             <div className="mt-3 h-3 w-full rounded-sm bg-vessel" />
           </div>
         )}
-        <p className="mt-2 font-mono text-[11px] text-ink-3">
+        <p className="mt-2 font-mono text-[11px] text-ink-3" aria-live="polite">
           {sampleBusy ? "judging against the live book…" : "re-judged live on every asset switch"}
         </p>
       </div>
