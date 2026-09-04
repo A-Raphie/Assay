@@ -5,7 +5,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { AssetSlider } from "@/components/AssetSlider";
 import { HeroRail } from "@/components/HeroRail";
 import { ConnectSteps } from "@/components/ConnectSteps";
-import { heroProof } from "@/lib/proof";
 
 const RULES = [
   { id: "Rule 1", name: "Per-trade cap", line: "Max 2% of sub-account equity per order. Over the cap, the order is resized down, never dropped silently." },
@@ -14,8 +13,6 @@ const RULES = [
 ];
 
 export default function FrontDoor() {
-  const proof = heroProof();
-
   return (
     <main id="main" className="mx-auto w-full max-w-6xl overflow-x-clip px-6 pb-0">
       {/* Mono status strip: mirror grammar (logos terminal) — ping dot, phrase, thin dividers */}
@@ -31,8 +28,6 @@ export default function FrontDoor() {
             Live feed
           </span>
           <span className="h-3 w-px bg-line" aria-hidden />
-          <span>Binance MCP Server</span>
-          <span className="hidden h-3 w-px bg-line sm:block" aria-hidden />
           <span className="hidden sm:inline">Spot · replay transcript</span>
           <span className="ml-auto hidden font-mono text-[10px] tracking-[0.22em] text-ink-3 sm:inline">
             tryassay.vercel.app
@@ -69,7 +64,7 @@ export default function FrontDoor() {
             Never gated behind JS: above-the-fold content renders visible, full stop. */}
         <div>
           <h2 className="sr-only">Live market instrument and a verdict judged fresh</h2>
-          <HeroRail proof={proof} />
+          <HeroRail />
         </div>
       </section>
 

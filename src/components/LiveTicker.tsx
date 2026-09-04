@@ -55,7 +55,7 @@ export function LiveTicker({ symbol = "BTCUSDT" }: { symbol?: string }) {
   return (
     <div className="grid gap-2">
       <span className="flex items-center gap-2 font-mono text-xs tracking-widest text-ink-3">
-        <span className="dot-live" /> {symbol} · live · binance mcp
+        <span className="dot-live" /> {symbol} · live
       </span>
       {/* Fixed-height rows (winsznx: delta chip sits below the number). Data
           arriving must never shift layout: both rows are height-reserved. */}
