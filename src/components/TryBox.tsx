@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Verdict } from "@/engine/rules";
+import { replayScenarios } from "@/lib/scenarios";
 
 /**
  * The interactive verdict box: type an order, judge it. Wired to /api/verdict
@@ -12,14 +13,17 @@ export function TryBox() {
   const [symbol, setSymbol] = useState("DOGEUSDT");
   const [notional, setNotional] = useState("1000");
   const [busy, setBusy] = useState(false);
+  const [busyId, setBusyId] = useState<string | null>(null);
   const [result, setResult] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const judge = async () => {
+  const judge = async (symOverride?: string, notionalOverride?: string) => {
+    const sym = symOverride ?? symbol;
+    const amt = notionalOverride ?? notional;
     setBusy(true);
     setError(null);
     try {
-      const r = await fetch(`/api/verdict?symbol=${encodeURIComponent(symbol)}&notional=${encodeURIComponent(notional)}`);
+      const r = await fetch(`/api/verdict?symbol=${encodeURIComponent(sym)}&notional=${encodeURIComponent(amt)}`);
       const d = await r.json();
       if (!r.ok) setError(d.error ?? "verdict failed");
       else setResult(d);
@@ -37,6 +41,25 @@ export function TryBox() {
   return (
     <div className="rounded-card border border-line bg-panel p-6 card-depth">
       <p className="font-mono text-xs tracking-widest text-ink-3">TRY IT: JUDGE AN ORDER</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {replayScenarios
+          .filter((s) => s.id !== "red-day")
+          .map((s) => (
+            <button
+              key={s.id}
+              onClick={() => {
+                setBusyId(s.id);
+                setSymbol(s.symbol);
+                setNotional(String(s.notional));
+                judge(s.symbol, String(s.notional)).finally(() => setBusyId(null));
+              }}
+              disabled={busy}
+              className="rounded-full border border-line bg-vessel px-3 py-1.5 font-mono text-xs text-ink-2 transition-all duration-150 hover:border-accent hover:text-accent active:scale-[0.98] disabled:opacity-50"
+            >
+              {busyId === s.id ? "Judging…" : `${s.symbol.replace("USDT", "").replace("USDC", "")} · ${s.notional.toLocaleString("en-US")}`}
+            </button>
+          ))}
+      </div>
       <div className="mt-4 flex flex-wrap items-end gap-3">
         <label className="grid gap-1.5">
           <span className="font-mono text-[11px] text-ink-3">symbol</span>
@@ -58,7 +81,7 @@ export function TryBox() {
           />
         </label>
         <button
-          onClick={judge}
+          onClick={() => judge()}
           disabled={busy}
           className="h-[42px] rounded-[10px] bg-accent-bright px-5 font-mono text-sm font-semibold text-on-accent transition-all duration-150 hover:bg-accent hover:shadow-[0_0_20px_var(--glow-accent)] active:scale-[0.98] disabled:opacity-50"
         >
