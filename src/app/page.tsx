@@ -143,7 +143,7 @@ export default function FrontDoor() {
       </section>
 
       {/* Connect your agent */}
-      <section className="border-t border-line py-16">
+      <section id="connect" className="scroll-mt-4 border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">CONNECT YOUR AGENT</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-2">
           After you write your rules, this is the whole integration:

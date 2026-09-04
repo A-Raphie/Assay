@@ -33,7 +33,7 @@ export default function TryPage() {
 
       <p className="mt-6 text-xs leading-relaxed text-ink-3">
         Want it connected to your actual agent instead? That is the{" "}
-        <Link href="/" className="text-accent hover:underline">
+        <Link href="/#connect" className="text-accent hover:underline">
           connect-your-agent
         </Link>{" "}
         path: three rules in your browser, one MCP endpoint in your agent.
