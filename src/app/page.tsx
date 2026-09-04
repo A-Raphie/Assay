@@ -48,7 +48,7 @@ export default function FrontDoor() {
             Let your AI agent trade without handing it the keys.
           </h1>
           <p className="mt-6 max-w-[680px] text-pretty text-lg leading-relaxed text-ink-2">
-            Assay checks every order your agent proposes through the binance mcp server against
+            Assay checks every order your agent proposes through the Binance MCP Server against
             three rules you own: a per-trade cap, a daily loss halt, an allowlist. oversized orders
             get cut, forbidden ones get stopped, and every verdict cites the rule that fired with
             proof attached.
@@ -181,7 +181,7 @@ export default function FrontDoor() {
       <section className="border-t border-line py-16">
         <h2 className="font-mono text-sm tracking-widest text-ink-2">CONNECT YOUR AGENT</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-2">
-          after you write your rules, this is the whole integration:
+          After you write your rules, this is the whole integration:
         </p>
         <div className="mt-6">
           <ConnectSteps />
@@ -193,7 +193,7 @@ export default function FrontDoor() {
         <h2 className="font-mono text-sm tracking-widest text-ink-2">STRAIGHT ANSWERS</h2>
         <div className="mt-6 grid max-w-2xl gap-5">
           {[
-            ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the binance mcp server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
+            ["Can Assay move my funds?", "No. It holds no keys and takes no custody: it rides the Binance MCP Server's permission model, where the withdrawal scope does not exist. LIVE verdicts stop before the execute call."],
             ["Is the REPLAY data real?", "Yes: recorded MCP responses, sha256-stamped, re-verified on every load. The only declared number is the paper equity, and it says so on screen."],
             ["Which agents work with it?", "Any of them. Claude Code, Codex, ChatGPT, VS Code: if it speaks MCP, its orders can be judged. Assay is a check, not a framework."],
             ["What do I need to run it?", "A Binance account with an Agentic sub-account and any MCP-speaking agent. The rules live in your browser; nothing to deploy, nothing to install server-side."],
