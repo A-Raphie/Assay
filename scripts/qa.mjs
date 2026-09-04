@@ -93,15 +93,37 @@ async function cmdEdge() {
   ok("edge huge notional -> halts or blocks, never executes", ["HALT", "BLOCK", "RESIZE"].includes(huge.body?.verdict?.action), `got ${huge.body?.verdict?.action}`);
 }
 
+async function cmdMcp() {
+  const body = (payload) => JSON.stringify(payload);
+  const post = async (payload) => {
+    const res = await fetch(BASE + "/api/mcp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body(payload),
+    });
+    return { status: res.status, json: await res.json().catch(() => null) };
+  };
+  const init = await post({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "qa", version: "0.0.1" } } });
+  ok("mcp initialize -> server assay", init.json?.result?.serverInfo?.name === "assay");
+  const list = await post({ jsonrpc: "2.0", id: 2, method: "tools/list" });
+  ok("mcp tools/list -> assay_check", (list.json?.result?.tools ?? []).some((t) => t.name === "assay_check"));
+  const call = await post({ jsonrpc: "2.0", id: 3, method: "tools/call", params: { name: "assay_check", arguments: { symbol: "DOGEUSDT", notional: 1000 } } });
+  const text = call.json?.result?.content?.[0]?.text ?? "";
+  ok("mcp assay_check DOGE 1000 -> BLOCK", text.startsWith("BLOCK"), text.slice(0, 80));
+  const bad = await post({ jsonrpc: "2.0", id: 4, method: "tools/call", params: { name: "assay_check", arguments: { symbol: "BTCUSDT", notional: -5 } } });
+  ok("mcp assay_check notional -5 -> invalid-params error", bad.json?.error?.code === -32602);
+}
+
 async function cmdAll() {
   await cmdPages();
   await cmdSmoke();
   await cmdTicker();
   await cmdEdge();
   await cmdShare("DOGEUSDT", 1000);
+  await cmdMcp();
 }
 
-const commands = { verdict: cmdVerdict, ticker: cmdTicker, share: cmdShare, pages: cmdPages, smoke: cmdSmoke, edge: cmdEdge, all: cmdAll };
+const commands = { verdict: cmdVerdict, ticker: cmdTicker, share: cmdShare, pages: cmdPages, smoke: cmdSmoke, edge: cmdEdge, mcp: cmdMcp, all: cmdAll };
 
 const [, , cmd, ...args] = process.argv;
 const fn = commands[cmd];

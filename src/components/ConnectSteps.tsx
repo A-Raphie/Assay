@@ -8,8 +8,8 @@ const CONFIG = `{
       "url": "https://agent.binance.com/mcp/agentic"
     },
     "assay": {
-      "url": "https://tryassay.vercel.app/api/verdict",
-      "note": "Judge every order here before spot.newOrder"
+      "url": "https://tryassay.vercel.app/api/mcp",
+      "note": "call assay_check before every order"
     }
   }
 }`;
@@ -30,7 +30,7 @@ export function ConnectSteps() {
       {[
         { n: "1", title: "Write your three rules", body: "Cap, halt, allowlist. This page, 30 seconds, saved in your browser." },
         { n: "2", title: "Copy the config into your agent", body: "Claude Code, Codex, ChatGPT, VS Code: paste the snippet below into your MCP settings." },
-        { n: "3", title: "Route every order through the check", body: "Your agent calls the verdict endpoint before spot.newOrder. Blocked orders never reach Binance." },
+        { n: "3", title: "Route every order through the check", body: "Your agent calls the assay_check tool before spot.newOrder. Blocked orders never reach Binance." },
       ].map((s) => (
         <div key={s.n} className="rounded-card border border-line bg-panel p-6 card-depth card-hover">
           <span className="font-mono text-xs text-accent">{s.n}</span>
