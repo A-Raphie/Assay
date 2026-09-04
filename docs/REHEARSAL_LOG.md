@@ -20,3 +20,9 @@ Path: branch → preview deploy → E2E as real user → CLI-QA → merge → pr
 
 ## Gate
 - main deployed to production (tryassay.vercel.app), live /api/verdict returns BLOCK for the canonical YOLO case, brand present. Lighthouse on final: P99 / A100 / BP100 / SEO100, CLS 0.001, LCP 1.6s.
+
+## Final audit round (Sep 4 night) — third full re-run
+- Isolated reviewer (fresh eyes, current build): 29/40 Good-bottom. Real catches: "oversized" lowercase still live (scripted fix had silently missed the wrapped line — lesson: verify replace matched, assert), nav membership drifted per page, number formats drifted, FAQ measure. Fixed all; nav now consistent (try/desk/rules everywhere incl. strip + footer).
+- Test-data artifact flagged as "contradiction": desk rules showed 3%/0.3% — that was MY audit browser localStorage, not shipped defaults (2%/5% everywhere for fresh visitors). Reviewers audit the browser you give them; clean it before they look.
+- Hero copy rewritten on his verdict: "keys" line was a custody story Assay doesn't own → "Your agent places the trade. Your rules make the call." Subhead cut from spec-dump to mechanism + payoff.
+- Final Lighthouse: P99 / A100 / BP100 / SEO100, CLS 0, LCP 2.0s.
