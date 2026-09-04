@@ -1,9 +1,15 @@
-You just wired an AI agent to Binance. One bad prompt, and it spends everything. Assay is the check that stands between them.
+You just wired an AI agent to Binance. One bad prompt, and it spends everything. Assay is the check that stands between them. This is the whole product: a live price, a stamped verdict, and a hash you can audit. Watch what it does.
 
-Here's the whole product in one click. A thousand dollars into Dogecoin: blocked. Rule three, the allowlist. The order never reaches Binance.
+Here's the one job. A thousand dollars into Dogecoin: blocked. Rule three, the allowlist. The order never reaches Binance, and the card shows the rule that fired. One click, one verdict, done.
 
-Same agent, honest trade. Fifty dollars of Bitcoin, over the two percent cap: resized to twenty. The rule that fired is written right on the card.
+Now the honest trade. Fifty dollars of Bitcoin is over the two percent cap, so Assay cuts it to twenty. Not rejected, resized. The agent still trades, just inside your rules.
 
-Every verdict carries the hash of the real market response it judged. Not a promise. A receipt.
+Every verdict carries the hash of the exact market response it judged. This one was judged seconds ago, off the live feed. Not a promise. A receipt you can audit.
 
-Assay: your agent places the trade, your rules make the call. App and source are on screen now.
+The desk is mission control. Five scenarios, one click each. Red day: the agent is down six percent, so every order halts. Pause, not panic. And every card carries a public link anyone can audit, no wallet, no login.
+
+The whole pitch is these two numbers. Raw MCP: a thousand dollars out the door, zero checks. Through Assay: zero dollars out, and a card that says exactly why.
+
+Connecting is real, not slides. Paste one config and your agent gets two servers: Binance to trade, Assay to check. The assay check tool judges every order before spot new order runs. Blocked orders never reach the exchange.
+
+Assay: your agent places the trade, your rules make the call. The app, the source, and the check are on screen right now.
