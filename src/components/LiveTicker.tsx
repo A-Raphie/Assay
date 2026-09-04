@@ -15,9 +15,15 @@ export function LiveTicker({ symbol = "BTCUSDT" }: { symbol?: string }) {
   const [tick, setTick] = useState<Tick | null>(null);
   const [flash, setFlash] = useState<"up" | "down" | null>(null);
   const prev = useRef<number | null>(null);
+  // Per-asset price memory: returning to an asset shows its last quote
+  // instantly while the fresh one loads (no "…" beat on cycle-back).
+  const cache = useRef<Map<string, Tick>>(new Map());
 
   useEffect(() => {
     let alive = true;
+    const cached = cache.current.get(symbol);
+    setTick(cached ?? null);
+    prev.current = cached ? Number(cached.lastPrice) : null;
     const pull = async () => {
       try {
         const r = await fetch(`/api/ticker?symbol=${symbol}`);
@@ -29,7 +35,9 @@ export function LiveTicker({ symbol = "BTCUSDT" }: { symbol?: string }) {
           setTimeout(() => alive && setFlash(null), 1200);
         }
         prev.current = now;
-        setTick({ lastPrice: d.lastPrice, changePct: d.changePct });
+        const next = { lastPrice: d.lastPrice, changePct: d.changePct };
+        cache.current.set(symbol, next);
+        setTick(next);
       } catch {
         /* silent: strip keeps last value */
       }

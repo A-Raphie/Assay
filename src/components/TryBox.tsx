@@ -116,8 +116,8 @@ export function TryBox() {
       )}
       {!result && !error && (
         <p className="mt-4 text-xs leading-relaxed text-ink-3">
-          Judged against the real recorded price through the same engine the desk uses. Try 1000
-          into DOGEUSDT, then 10 into BTCUSDT.
+          Judged against the real recorded price through the same engine the desk uses. Or type any
+          symbol and amount yourself.
         </p>
       )}
     </div>

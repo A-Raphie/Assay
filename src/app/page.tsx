@@ -2,9 +2,8 @@ import Link from "next/link";
 import { DocketCard } from "@/components/DocketCard";
 import { Reveal, TaglineReveal } from "@/components/Reveal";
 import { SiteFooter } from "@/components/SiteFooter";
-import { LiveTicker } from "@/components/LiveTicker";
-import { Sparkline } from "@/components/Sparkline";
-import { TryBox } from "@/components/TryBox";
+import { AssetSlider } from "@/components/AssetSlider";
+import { HeroRail } from "@/components/HeroRail";
 import { ConnectSteps } from "@/components/ConnectSteps";
 import { heroProof } from "@/lib/proof";
 
@@ -66,40 +65,11 @@ export default function FrontDoor() {
           </div>
         </div>
 
-        {/* Live instrument: hero number + sparkline + real proof card. Never gated
-            behind JS: above-the-fold content renders visible, full stop. */}
+        {/* Live instrument: auto-cycling asset slider (BTC -> ETH -> BNB) + proof card.
+            Never gated behind JS: above-the-fold content renders visible, full stop. */}
         <div>
-          <div className="grid gap-4">
-            <h2 className="sr-only">Live market instrument and a verdict judged fresh</h2>
-            <div className="rounded-card border border-line bg-panel p-6 card-depth">
-              <div className="flex items-start justify-between gap-4">
-                <LiveTicker symbol="BTCUSDT" />
-                <Sparkline symbol="BTCUSDT" className="hidden h-12 w-40 shrink-0 sm:block" />
-              </div>
-              <p className="mt-3 font-mono text-[11px] text-ink-3">
-                the price your agent would trade at, right now · 24h closes
-              </p>
-            </div>
-            {proof && (
-              <DocketCard
-                serial="live sample · judged at page load"
-                verdict={proof.verdict}
-                symbol={proof.order.symbol}
-                notional={proof.order.notional}
-                price={proof.price}
-                transcriptHash={proof.transcriptHash}
-                mode="REPLAY"
-              />
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Try box: do the one job in five seconds */}
-      <section id="try" className="border-t border-line py-16 scroll-mt-6">
-        <h2 className="font-mono text-sm tracking-widest text-ink-2">DO THE ONE JOB RIGHT HERE</h2>
-        <div className="mt-6">
-          <TryBox />
+          <h2 className="sr-only">Live market instrument and a verdict judged fresh</h2>
+          <HeroRail proof={proof} />
         </div>
       </section>
 
