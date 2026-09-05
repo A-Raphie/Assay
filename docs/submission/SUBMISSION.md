@@ -43,27 +43,14 @@ Is execution live?
 | Judge experience | 90-second path, no login, deterministic REPLAY, hashes verifiable |
 | Honest disclosure | README honesty table; zero balances rendered as zero; REPLAY labeled and declared |
 
-## X_POST (one sentence per line)
+## X_POST: short, quote-repost of @Binance announcement (254 chars)
 
-I let my AI agent run trades on Binance overnight.
+Built Assay for the Binance Agent OS hackathon. It checks every AI agent order against your rules before Binance sees it: over cap, resized. Off list, blocked. Every verdict cites the rule and carries the response hash.
 
-Woke up to find it bought PEPE with money I didn't know it could touch.
+tryassay.vercel.app
+github.com/A-Raphie/Assay
 
-So I built Assay.
-
-The agent proposes an order, Assay checks it against three rules you set before Binance ever sees it.
-
-Over the cap: cut down.
-
-Off the list: blocked.
-
-Every verdict tells you exactly why it fired.
-
-Works with Claude Code, Codex, ChatGPT.
-
-Live at tryassay.vercel.app
-
-## X_POST_LONG (detailed version)
+## X_POST_LONG: standalone post (thread opener or main post)
 
 I let my AI agent run trades on Binance overnight.
 

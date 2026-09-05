@@ -34,3 +34,12 @@ Path: branch → preview deploy → E2E as real user → CLI-QA → merge → pr
 - "no keys / no custody" — verified: no key storage in repo, no withdrawal scope in the Binance MCP model: TRUE.
 - Config snippet — /api/mcp answers initialize, tools/list, tools/call (assay_check) in JSON-RPC: TRUE (37/37 incl. mcp checks).
 - Link claims — /try, /desk, /rules, /#connect, /d/ valid + malformed: all land on the promised section/state: TRUE.
+
+## demo-final-gate on v2 (Sep 4)
+The post-mux gate skill now runs as a script on the final cut before it opens for the user. Full output on assay-demo-v2.mp4:
+- GATE 1 duration: PASS (129.423242 s vs beats 129.02 s, delta 0.4 s)
+- GATE 2 segments: PASS (8/8 takes cover their beats)
+- GATE 3 dead air: total 25.04s (19.3%) | max gap 1.07s | gaps>=1s: 1 | PASS (budget: max gap 1.2s, at most 2 gaps >= 1s; total % informational)
+- GATE 4 volume: PASS (mean -25.1dB, max -5.8dB)
+VERDICT: PASS.
+Gate hardening paid for during dogfooding: the script had v2's runtime hardcoded in the dead-air probe (now computed from the file), pointed at segN.mp4 instead of sceneN.mp4 so the segment check silently skipped (now checks the kept takes cover their beats, since the muxer trims long takes), and the total dead-air percentage was a gate at 3% which every normally paced cut fails (v2 ships at 19.3% in sub-1.1s breaths and was accepted) — total is now informational, the budgets are max gap and gap count plus the volume floor.
