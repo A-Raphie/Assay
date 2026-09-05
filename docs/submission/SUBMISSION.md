@@ -63,6 +63,22 @@ Works with Claude Code, Codex, ChatGPT.
 
 Live at tryassay.vercel.app
 
+## X_POST_LONG (detailed version)
+
+i let my AI agent run trades on Binance overnight. woke up to find it bought PEPE with money I didn't know it could touch.
+
+so I built Assay. the agent proposes an order, Assay checks it against three rules you set before Binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
+
+the rules are yours: a per-trade cap (default 2%), a daily loss halt (default 5%), and an allowlist (BTC, ETH, BNB). change them on the rules page, saved in your browser. the engine prices every order against the real book and judges it before it's placed.
+
+under the hood: one TypeScript engine, two modes. LIVE mode reads your real sub-account through the Binance MCP Server. REPLAY mode re-judges against hash-verified recorded transcripts, so the demo is deterministic. every verdict carries a sha256 of the exact MCP response it judged.
+
+Assay ships its own MCP endpoint too. paste one config and your agent gets two servers: Binance to trade, Assay to check. works with Claude Code, Codex, ChatGPT.
+
+live: tryassay.vercel.app
+try it: tryassay.vercel.app/try
+source: github.com/A-Raphie/Assay
+
 ## SUBMISSION CHECKLIST
 
 - [ ] Follow @Binance + repost announcement (do from @a_raphie)
