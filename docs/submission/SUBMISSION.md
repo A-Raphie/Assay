@@ -65,19 +65,43 @@ Live at tryassay.vercel.app
 
 ## X_POST_LONG (detailed version)
 
-i let my AI agent run trades on Binance overnight. woke up to find it bought PEPE with money I didn't know it could touch.
+I let my AI agent run trades on Binance overnight.
 
-so I built Assay. the agent proposes an order, Assay checks it against three rules you set before Binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
+Woke up to find it bought PEPE with money I didn't know it could touch.
 
-the rules are yours: a per-trade cap (default 2%), a daily loss halt (default 5%), and an allowlist (BTC, ETH, BNB). change them on the rules page, saved in your browser. the engine prices every order against the real book and judges it before it's placed.
+So I built Assay.
 
-under the hood: one TypeScript engine, two modes. LIVE mode reads your real sub-account through the Binance MCP Server. REPLAY mode re-judges against hash-verified recorded transcripts, so the demo is deterministic. every verdict carries a sha256 of the exact MCP response it judged.
+The agent proposes an order, Assay checks it against three rules you set before Binance ever sees it.
 
-Assay ships its own MCP endpoint too. paste one config and your agent gets two servers: Binance to trade, Assay to check. works with Claude Code, Codex, ChatGPT.
+Over the cap: cut down.
 
-live: tryassay.vercel.app
-try it: tryassay.vercel.app/try
-source: github.com/A-Raphie/Assay
+Off the list: blocked.
+
+Every verdict tells you exactly why it fired.
+
+The rules are yours: a per-trade cap (default 2%), a daily loss halt (default 5%), and an allowlist (BTC, ETH, BNB). Change them on the rules page, saved in your browser.
+
+The engine prices every order against the real book and judges it before it's placed.
+
+Under the hood: one TypeScript engine, two modes.
+
+LIVE mode reads your real sub-account through the Binance MCP Server.
+
+REPLAY mode re-judges against hash-verified recorded transcripts, so the demo is deterministic.
+
+Every verdict carries a sha256 of the exact MCP response it judged.
+
+Assay ships its own MCP endpoint too.
+
+Paste one config and your agent gets two servers: Binance to trade, Assay to check.
+
+Works with Claude Code, Codex, ChatGPT.
+
+Live: tryassay.vercel.app
+
+Try it: tryassay.vercel.app/try
+
+Source: github.com/A-Raphie/Assay
 
 ## SUBMISSION CHECKLIST
 
