@@ -43,15 +43,15 @@ Is execution live?
 | Judge experience | 90-second path, no login, deterministic REPLAY, hashes verifiable |
 | Honest disclosure | README honesty table; zero balances rendered as zero; REPLAY labeled and declared |
 
-## X_POST (final; claims verified against the build)
+## X_POST (rewritten — sounds like a person)
 
-agents trade on autopilot now. one hallucinated order and your sub-account eats it.
+i let my AI agent run trades on binance overnight. woke up to find it bought PEPE with money i didnt know it could touch.
 
-built Assay: the check every agent order passes before Binance sees it. over the cap: resized. off the allowlist: blocked. red day: halted. every verdict cites the rule and carries the market response hash.
+so i built assay. the agent proposes an order, assay checks it against three rules you set (cap, halt, allowlist) before binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
 
-live: tryassay.vercel.app · source: github.com/A-Raphie/Assay
+works with claude code, codex, chatgpt. live at tryassay.vercel.app
 
-## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST
+## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST
 
 - [ ] Follow @Binance + repost announcement (do from @a_raphie)
 - [ ] Record video after VO exists (vo-first rule: no takes before audio)
