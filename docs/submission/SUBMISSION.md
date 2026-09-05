@@ -45,9 +45,19 @@ Is execution live?
 
 ## X_POST (one sentence per line)
 
-i let my AI agent run trades on binance overnight. woke up to find it bought PEPE with money i didnt know it could touch.
+i let my AI agent run trades on binance overnight.
 
-so i built assay. the agent proposes an order, assay checks it against three rules you set before binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
+woke up to find it bought PEPE with money i didnt know it could touch.
+
+so i built assay.
+
+the agent proposes an order, assay checks it against three rules you set before binance ever sees it.
+
+over the cap: cut down.
+
+off the list: blocked.
+
+every verdict tells you exactly why it fired.
 
 works with claude code, codex, chatgpt.
 
