@@ -43,18 +43,19 @@ Is execution live?
 | Judge experience | 90-second path, no login, deterministic REPLAY, hashes verifiable |
 | Honest disclosure | README honesty table; zero balances rendered as zero; REPLAY labeled and declared |
 
-## X_POST (rewritten — sounds like a person)
+## X_POST (one sentence per line)
 
 i let my AI agent run trades on binance overnight. woke up to find it bought PEPE with money i didnt know it could touch.
 
-so i built assay. the agent proposes an order, assay checks it against three rules you set (cap, halt, allowlist) before binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
+so i built assay. the agent proposes an order, assay checks it against three rules you set before binance ever sees it. over the cap: cut down. off the list: blocked. every verdict tells you exactly why it fired.
 
-works with claude code, codex, chatgpt. live at tryassay.vercel.app
+works with claude code, codex, chatgpt.
 
-## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST
+live at tryassay.vercel.app
+
+## SUBMISSION CHECKLIST
 
 - [ ] Follow @Binance + repost announcement (do from @a_raphie)
-- [ ] Record video after VO exists (vo-first rule: no takes before audio)
 - [ ] Quote-repost with video + GitHub link
 - [ ] Complete survey: https://app.binance.com/uni-qr/user-survey/2913aa200aac462c89a737779393f3d4
 - [ ] Verify all links incognito
