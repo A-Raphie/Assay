@@ -45,23 +45,23 @@ Is execution live?
 
 ## X_POST (one sentence per line)
 
-i let my AI agent run trades on binance overnight.
+I let my AI agent run trades on Binance overnight.
 
-woke up to find it bought PEPE with money i didnt know it could touch.
+Woke up to find it bought PEPE with money I didn't know it could touch.
 
-so i built assay.
+So I built Assay.
 
-the agent proposes an order, assay checks it against three rules you set before binance ever sees it.
+The agent proposes an order, Assay checks it against three rules you set before Binance ever sees it.
 
-over the cap: cut down.
+Over the cap: cut down.
 
-off the list: blocked.
+Off the list: blocked.
 
-every verdict tells you exactly why it fired.
+Every verdict tells you exactly why it fired.
 
-works with claude code, codex, chatgpt.
+Works with Claude Code, Codex, ChatGPT.
 
-live at tryassay.vercel.app
+Live at tryassay.vercel.app
 
 ## SUBMISSION CHECKLIST
 
