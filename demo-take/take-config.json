@@ -1,39 +1,602 @@
 {
   "driver": "http://127.0.0.1:9333",
   "cdp": "http://127.0.0.1:9222",
-  "voDir": "/Users/raphie/Documents/Hackathons/assay/demo-take/beats",
-  "outDir": "/Users/raphie/Documents/Hackathons/assay/demo-take/takes",
+  "voDir": "/Users/raphie/Documents/Hackathons/assay/demo-take/beats2",
+  "outDir": "/Users/raphie/Documents/Hackathons/assay/demo-take/takes2",
   "final": "/Users/raphie/Documents/Hackathons/assay/demo-take/final.mp4",
   "cursorPark": "1709,60",
   "scenes": {
-    "1": { "name": "hero-hook",
-      "prep": [ {"t":"goto","url":"https://tryassay.vercel.app/"}, {"t":"hold","ms":1200} ],
-      "actions": [ {"t":"cmove","x":950,"y":150}, {"t":"hold","ms":1500},
-                   {"t":"cmove","x":790,"y":220}, {"t":"hold","ms":1800},
-                   {"t":"cmove","x":1050,"y":180}, {"t":"hold","ms":2500},
-                   {"t":"cmove","x":790,"y":220}, {"t":"hold","ms":2200} ] },
-    "2": { "name": "judge-block",
-      "prep": [ {"t":"goto","url":"https://tryassay.vercel.app/try"}, {"t":"hold","ms":1500} ],
-      "actions": [ {"t":"cmove","x":760,"y":300}, {"t":"hold","ms":800},
-                   {"t":"textClick","text":"DOGE · 1,000"}, {"t":"waitText","re":"BLOCK"},
-                   {"t":"hold","ms":2500}, {"t":"cmove","x":900,"y":420},
-                   {"t":"hold","ms":2500}, {"t":"cmove","x":850,"y":500}, {"t":"hold","ms":1800} ] },
-    "3": { "name": "judge-resize",
-      "prep": [ {"t":"goto","url":"https://tryassay.vercel.app/try"}, {"t":"hold","ms":1500} ],
-      "actions": [ {"t":"textClick","text":"BTC · 50"}, {"t":"waitText","re":"RESIZE"},
-                   {"t":"hold","ms":2200}, {"t":"cmove","x":820,"y":400},
-                   {"t":"hold","ms":2500}, {"t":"cmove","x":880,"y":470},
-                   {"t":"hold","ms":2800}, {"t":"cmove","x":860,"y":510}, {"t":"hold","ms":2200} ] },
-    "4": { "name": "proof-hash",
-      "prep": [ {"t":"goto","url":"https://tryassay.vercel.app/try"}, {"t":"hold","ms":1500},
-                {"t":"clickText","text":"BTC · 50"}, {"t":"waitText","re":"RESIZE"}, {"t":"hold","ms":800} ],
-      "actions": [ {"t":"hoverJs","find":"transcript sha256"}, {"t":"hold","ms":2200},
-                   {"t":"cmove","x":400,"y":60}, {"t":"hold","ms":1600},
-                   {"t":"cmove","x":300,"y":60}, {"t":"hold","ms":1500} ] },
-    "5": { "name": "close-links",
-      "prep": [ {"t":"goto","url":"https://github.com/A-Raphie/Assay"}, {"t":"hold","ms":2000} ],
-      "actions": [ {"t":"cmove","x":500,"y":300}, {"t":"hold","ms":2000},
-                   {"t":"cmove","x":700,"y":400}, {"t":"hold","ms":2600},
-                   {"t":"cmove","x":900,"y":350}, {"t":"hold","ms":2200} ] }
+    "1": {
+      "name": "hero-hook",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/"
+        },
+        {
+          "t": "hold",
+          "ms": 1500
+        }
+      ],
+      "actions": [
+        {
+          "t": "hold",
+          "ms": 3400
+        },
+        {
+          "t": "wheel",
+          "dy": 300
+        },
+        {
+          "t": "hold",
+          "ms": 3000
+        },
+        {
+          "t": "wheel",
+          "dy": 200
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "wheel",
+          "dy": 500
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "wheel",
+          "dy": 900
+        },
+        {
+          "t": "hold",
+          "ms": 3200
+        },
+        {
+          "t": "wheel",
+          "dy": 300
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        },
+        {
+          "t": "cmove",
+          "x": 300,
+          "y": 500
+        },
+        {
+          "t": "hold",
+          "ms": 1600
+        }
+      ]
+    },
+    "2": {
+      "name": "judge-block",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/try"
+        },
+        {
+          "t": "hold",
+          "ms": 1500
+        }
+      ],
+      "actions": [
+        {
+          "t": "cmove",
+          "x": 760,
+          "y": 305
+        },
+        {
+          "t": "hold",
+          "ms": 900
+        },
+        {
+          "t": "textClick",
+          "text": "DOGE \u00b7 1,000"
+        },
+        {
+          "t": "waitText",
+          "re": "BLOCK"
+        },
+        {
+          "t": "hold",
+          "ms": 2000
+        },
+        {
+          "t": "cmove",
+          "x": 900,
+          "y": 420
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        },
+        {
+          "t": "cmove",
+          "x": 850,
+          "y": 500
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        },
+        {
+          "t": "cmove",
+          "x": 800,
+          "y": 460
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        },
+        {
+          "t": "cmove",
+          "x": 880,
+          "y": 480
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        }
+      ]
+    },
+    "3": {
+      "name": "judge-resize",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/try"
+        },
+        {
+          "t": "hold",
+          "ms": 1500
+        }
+      ],
+      "actions": [
+        {
+          "t": "textClick",
+          "text": "BTC \u00b7 50"
+        },
+        {
+          "t": "waitText",
+          "re": "RESIZE"
+        },
+        {
+          "t": "hold",
+          "ms": 2000
+        },
+        {
+          "t": "cmove",
+          "x": 830,
+          "y": 400
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "cmove",
+          "x": 890,
+          "y": 470
+        },
+        {
+          "t": "hold",
+          "ms": 2800
+        },
+        {
+          "t": "cmove",
+          "x": 860,
+          "y": 515
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "cmove",
+          "x": 840,
+          "y": 455
+        },
+        {
+          "t": "hold",
+          "ms": 2800
+        },
+        {
+          "t": "cmove",
+          "x": 875,
+          "y": 490
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        }
+      ]
+    },
+    "4": {
+      "name": "proof-hash",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/try"
+        },
+        {
+          "t": "hold",
+          "ms": 1500
+        },
+        {
+          "t": "textClick",
+          "text": "BTC \u00b7 50"
+        },
+        {
+          "t": "waitText",
+          "re": "RESIZE"
+        },
+        {
+          "t": "hold",
+          "ms": 900
+        }
+      ],
+      "actions": [
+        {
+          "t": "hoverJs",
+          "find": "hashLine"
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "cmove",
+          "x": 420,
+          "y": 60
+        },
+        {
+          "t": "hold",
+          "ms": 1900
+        },
+        {
+          "t": "cmove",
+          "x": 320,
+          "y": 60
+        },
+        {
+          "t": "hold",
+          "ms": 1900
+        },
+        {
+          "t": "cmove",
+          "x": 520,
+          "y": 60
+        },
+        {
+          "t": "hold",
+          "ms": 2300
+        },
+        {
+          "t": "cmove",
+          "x": 380,
+          "y": 60
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "hoverJs",
+          "find": "hashLine"
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "cmove",
+          "x": 480,
+          "y": 60
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "hoverJs",
+          "find": "hashLine"
+        },
+        {
+          "t": "hold",
+          "ms": 2500
+        }
+      ]
+    },
+    "5": {
+      "name": "desk-mission-control",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/desk"
+        },
+        {
+          "t": "hold",
+          "ms": 1500
+        }
+      ],
+      "actions": [
+        {
+          "t": "cmove",
+          "x": 330,
+          "y": 790
+        },
+        {
+          "t": "hold",
+          "ms": 900
+        },
+        {
+          "t": "clickJs",
+          "find": "scenarioRedDay"
+        },
+        {
+          "t": "waitText",
+          "re": "HALT"
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "cmove",
+          "x": 660,
+          "y": 460
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        },
+        {
+          "t": "cmove",
+          "x": 520,
+          "y": 463
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        },
+        {
+          "t": "cmove",
+          "x": 330,
+          "y": 290
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        },
+        {
+          "t": "cmove",
+          "x": 900,
+          "y": 330
+        },
+        {
+          "t": "hold",
+          "ms": 2800
+        },
+        {
+          "t": "cmove",
+          "x": 600,
+          "y": 462
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        }
+      ]
+    },
+    "6": {
+      "name": "two-numbers",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/"
+        },
+        {
+          "t": "hold",
+          "ms": 1200
+        },
+        {
+          "t": "wheel",
+          "page": "app",
+          "dy": 1000
+        },
+        {
+          "t": "hold",
+          "ms": 1000
+        }
+      ],
+      "actions": [
+        {
+          "t": "hoverJs",
+          "find": "numbersRaw"
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "hoverJs",
+          "find": "numbersAssay"
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "hoverJs",
+          "find": "numbersRaw"
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "hoverJs",
+          "find": "numbersAssay"
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        },
+        {
+          "t": "cmove",
+          "x": 675,
+          "y": 300
+        },
+        {
+          "t": "hold",
+          "ms": 2000
+        },
+        {
+          "t": "cmove",
+          "x": 675,
+          "y": 350
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        }
+      ]
+    },
+    "7": {
+      "name": "connect",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://tryassay.vercel.app/#connect"
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        }
+      ],
+      "actions": [
+        {
+          "t": "hoverJs",
+          "find": "copyBtn"
+        },
+        {
+          "t": "hold",
+          "ms": 800
+        },
+        {
+          "t": "clickJs",
+          "find": "copyBtn"
+        },
+        {
+          "t": "hold",
+          "ms": 1800
+        },
+        {
+          "t": "cmove",
+          "x": 500,
+          "y": 330
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "cmove",
+          "x": 500,
+          "y": 430
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "cmove",
+          "x": 620,
+          "y": 430
+        },
+        {
+          "t": "hold",
+          "ms": 2800
+        },
+        {
+          "t": "cmove",
+          "x": 500,
+          "y": 330
+        },
+        {
+          "t": "hold",
+          "ms": 2600
+        },
+        {
+          "t": "hoverJs",
+          "find": "copyBtn"
+        },
+        {
+          "t": "hold",
+          "ms": 2500
+        }
+      ]
+    },
+    "8": {
+      "name": "close-links",
+      "prep": [
+        {
+          "t": "goto",
+          "url": "https://github.com/A-Raphie/Assay"
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        }
+      ],
+      "actions": [
+        {
+          "t": "cmove",
+          "x": 500,
+          "y": 300
+        },
+        {
+          "t": "hold",
+          "ms": 2000
+        },
+        {
+          "t": "cmove",
+          "x": 700,
+          "y": 400
+        },
+        {
+          "t": "hold",
+          "ms": 2200
+        },
+        {
+          "t": "cmove",
+          "x": 880,
+          "y": 340
+        },
+        {
+          "t": "hold",
+          "ms": 2400
+        }
+      ]
+    }
+  },
+  "locators": {
+    "quickDoge": "[...document.querySelectorAll(\"button\")].find(b=>/DOGE \u00b7 1,000/.test(b.textContent))",
+    "quickBtc50": "[...document.querySelectorAll(\"button\")].find(b=>/BTC \u00b7 50/.test(b.textContent))",
+    "quickBtc10": "[...document.querySelectorAll(\"button\")].find(b=>/BTC \u00b7 10/.test(b.textContent))",
+    "scenarioRedDay": "[...document.querySelectorAll(\"button\")].find(b=>/red day/i.test(b.textContent))",
+    "copyBtn": "[...document.querySelectorAll(\"button\")].find(b=>b.textContent.trim().toLowerCase()===\"copy\")",
+    "hashLine": "[...document.querySelectorAll(\"p\")].find(e=>/entry sha256/.test(e.textContent))",
+    "numbersRaw": "[...document.querySelectorAll(\"div\")].find(e=>{const r=e.getBoundingClientRect();return /^RAW MCP/.test(e.textContent.trim())&&r.height>150&&r.height<500;})",
+    "numbersAssay": "[...document.querySelectorAll(\"div\")].find(e=>{const r=e.getBoundingClientRect();return /^THROUGH Assay/.test(e.textContent.trim())&&r.height>150&&r.height<500;})",
+    "tickerNum": "document.querySelector('.number-xl')",
+    "stripLiveFeed": "[...document.querySelectorAll(\"span\")].find(e=>/live feed/i.test(e.textContent))"
   }
 }

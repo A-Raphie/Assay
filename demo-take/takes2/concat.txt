@@ -1,0 +1,8 @@
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg1.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg2.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg3.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg4.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg5.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg6.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg7.mp4'
+file '/Users/raphie/Documents/Hackathons/assay/demo-take/takes2/seg8.mp4'
