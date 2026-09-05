@@ -101,6 +101,6 @@ Source: github.com/A-Raphie/Assay
 
 - [ ] Follow @Binance + repost announcement (do from @a_raphie)
 - [ ] Quote-repost with video + GitHub link
-- [ ] Complete survey: https://app.binance.com/uni-qr/user-survey/2913aa200aac462c89a737779393f3d4
+- [x] Complete survey: https://app.binance.com/uni-qr/user-survey/2913aa200aac462c89a737779393f3d4 (submitted Sep 4)
 - [ ] Verify all links incognito
 - [ ] Keep links alive through the judging window
