@@ -13,7 +13,7 @@ One engine, two modes: LIVE (real MCP reads against your sub-account) and REPLAY
 Links:
 - Live: https://tryassay.vercel.app
 - Repo: https://github.com/A-Raphie/assay
-- Video: [to add after final cut]
+- Video: demo-take/assay-demo-v2.mp4 (repo blob link)
 
 ## FORM-ANSWERS (drafts)
 
@@ -43,16 +43,15 @@ Is execution live?
 | Judge experience | 90-second path, no login, deterministic REPLAY, hashes verifiable |
 | Honest disclosure | README honesty table; zero balances rendered as zero; REPLAY labeled and declared |
 
-## X_POST (draft; run through humaniser before posting)
+## X_POST (final; claims verified against the build)
 
-found a hole in Agent OS: one prompt can move your whole sub-account.
-so i built assay: the check every agent order has to pass.
-orders over your cap get cut. off-list symbols get blocked. red days halt everything.
-every verdict cites the rule and carries the hash of the real MCP response.
-built on the Binance MCP Server, live here: [link] · repo: [link]
-#BinanceAgentOS
+agents trade on autopilot now. one hallucinated order and your sub-account eats it.
 
-## SUBMISSION CHECKLIST
+built Assay: the check every agent order passes before Binance sees it. over the cap: resized. off the allowlist: blocked. red day: halted. every verdict cites the rule and carries the market response hash.
+
+live: tryassay.vercel.app · source: github.com/A-Raphie/Assay
+
+## SUBMISSION CHECKLIST## SUBMISSION CHECKLIST
 
 - [ ] Follow @Binance + repost announcement (do from @a_raphie)
 - [ ] Record video after VO exists (vo-first rule: no takes before audio)
