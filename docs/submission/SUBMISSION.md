@@ -43,11 +43,18 @@ Is execution live?
 | Judge experience | 90-second path, no login, deterministic REPLAY, hashes verifiable |
 | Honest disclosure | README honesty table; zero balances rendered as zero; REPLAY labeled and declared |
 
-## X_POST: short, quote-repost of @Binance announcement (254 chars)
+## X_POST: short, quote-repost of @Binance announcement
 
-Built Assay for the Binance Agent OS hackathon. It checks every AI agent order against your rules before Binance sees it: over cap, resized. Off list, blocked. Every verdict cites the rule and carries the response hash.
+Built Assay for the Binance Agent OS hackathon.
+
+It checks every AI agent order against your rules before Binance sees it: over cap, resized.
+
+Off list, blocked.
+
+Every verdict cites the rule and carries the response hash.
 
 tryassay.vercel.app
+
 github.com/A-Raphie/Assay
 
 ## X_POST_LONG: standalone post (thread opener or main post)
